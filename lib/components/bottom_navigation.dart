@@ -31,9 +31,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
