@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:girl_scout_simple/constants.dart';
 
 class Dashboard extends StatefulWidget {
 
@@ -11,6 +12,13 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.red,
+//    return MaterialApp(
+//      theme: ThemeData(
+//        accentColor: kGreenColor,
+//        scaffoldBackgroundColor: kLightGreyBackgroundColor,
+//      ),
+    );
   }
 }

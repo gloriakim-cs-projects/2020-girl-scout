@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 
+const kGreenColor = Color(0xFF00B61E);
 const kBlackColor = Color(0xFF000000);
 const kLightGreyColor = Color(0xFFA8A8A8);
 const kDartGreyColor = Color(0xFF707070); //with white font
+const kLightGreyBackgroundColor = Color(0xFFF1F1F1);
 
 //(ex) Dashboard, Collection
 const kTitleTextStyle = TextStyle(

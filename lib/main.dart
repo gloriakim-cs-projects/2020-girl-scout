@@ -5,21 +5,14 @@ import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';
 import 'package:girl_scout_simple/screens/settings.dart';
 
-void main() {
-  runApp(GirlScout());
-}
+void main() => runApp(GirlScout());
 
 class GirlScout extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: kDartGreyColor,
-        scaffoldBackgroundColor: Color(0xFFF1F1F1),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      initialRoute: Dashboard.id,
+      home: Dashboard(),
       routes: {
         Dashboard.id: (context) => Dashboard(),
         Members.id: (context) => Members(),
@@ -29,3 +22,8 @@ class GirlScout extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
