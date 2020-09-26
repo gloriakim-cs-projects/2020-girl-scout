@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Collection extends StatefulWidget {
-
   static String id = '/Collection';
 
   @override
