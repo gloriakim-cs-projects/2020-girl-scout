@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
+import 'package:girl_scout_simple/components/reusable_card.dart';
 
 class Dashboard extends StatefulWidget {
   static String id = '/Dashboard';
@@ -47,6 +48,8 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),),),
           //TODO: Replace with graph (probably line for every member?)
+          //list of chart: https://google.github.io/charts/flutter/gallery.html
+          //library: https://pub.dev/packages/charts_flutter
           Expanded(child: ReusableCard(title: 'This Week', subtitle: '', cardChild: Row(
             children: [
               Icon(Icons.attachment),
@@ -69,54 +72,3 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-class ReusableCard extends StatelessWidget {
-
-  ReusableCard({@required this.title, this.subtitle, @required this.cardChild});
-  String title;
-  String subtitle;
-  Widget cardChild;
-  //List<String> list;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-      decoration: BoxDecoration(
-        color: kWhiteColor,
-        border: Border.all(
-          color: kLightGreyColor,
-        ),
-        borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headline2,
-            ),
-            SizedBox(height: 10.0),
-            //TODO: show only if subtitle is not null ('')
-            Text(
-              subtitle,
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
-            //TODO: show only if subtitle is not null ('')
-            SizedBox(height: 15.0),
-            cardChild,
-          ],
-        ),
-      ),
-    );
-  }
-}
