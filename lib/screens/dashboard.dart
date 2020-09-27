@@ -24,49 +24,75 @@ class _DashboardState extends State<Dashboard> {
         backgroundColor: kWhiteColor,
       ),
       backgroundColor: kLightGreyBackgroundColor,
-      body: Column(
-        children: <Widget>[
-          Expanded(child: ReusableCard(title: 'Undistributed', subtitle: '18 items',
-            //TODO: Include scroll bar
+      //Note: ListView makes the page vertically scrollable.
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
             //TODO: Include list that reflects the undistributed badges/patches
-            cardChild: Column(
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.attachment),
-                    SizedBox(width: 10.0),
-                    Text('Digital Game Design I', style: Theme.of(context).textTheme.bodyText1,),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.attachment),
-                    SizedBox(width: 10.0),
-                    Text('Digital Game Design II', style: Theme.of(context).textTheme.bodyText1,),
-                  ],
-                ),
-              ],
-            ),),),
-          //TODO: Replace with graph (probably line for every member?)
-          //list of chart: https://google.github.io/charts/flutter/gallery.html
-          //library: https://pub.dev/packages/charts_flutter
-          Expanded(child: ReusableCard(title: 'This Week', subtitle: '', cardChild: Row(
-            children: [
-              Icon(Icons.attachment),
-              SizedBox(width: 10.0),
-              Text('Digital Game Design I', style: Theme.of(context).textTheme.bodyText1,),
-            ],
-          ),),),
-          //TODO: Replace wtih graph (probably line; select members on the left?)
-          Expanded(child: ReusableCard(title: 'This Month', subtitle: '', cardChild: Row(
-            children: [
-              Icon(Icons.attachment),
-              SizedBox(width: 10.0),
-              Text('Digital Game Design I', style: Theme.of(context).textTheme.bodyText1,),
-            ],
-          ),)),
-          SizedBox(height: 10.0,),
-        ],
+            ReusableCard(title: 'Undistributed', subtitle: '18 items',
+              cardChild: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.attachment),
+                      SizedBox(width: 10.0),
+                      Text('Digital Game Design I', style: Theme.of(context).textTheme.bodyText1,),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.attachment),
+                      SizedBox(width: 10.0),
+                      Text('Digital Game Design II', style: Theme.of(context).textTheme.bodyText1,),
+                    ],
+                  ),
+                ],
+              ),),
+            //TODO: Replace with graph (probably line for every member?)
+            //list of chart: https://google.github.io/charts/flutter/gallery.html
+            //library: https://pub.dev/packages/charts_flutter
+            ReusableCard(title: 'This Week', subtitle: '',
+              cardChild: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.attachment),
+                      SizedBox(width: 10.0),
+                      Text('Digital Game Design I', style: Theme.of(context).textTheme.bodyText1,),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.attachment),
+                      SizedBox(width: 10.0),
+                      Text('Digital Game Design II', style: Theme.of(context).textTheme.bodyText1,),
+                    ],
+                  ),
+                ],
+              ),),
+            //TODO: Replace with graph (probably line for every member?)
+            ReusableCard(title: 'This Month', subtitle: '',
+              cardChild: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.attachment),
+                      SizedBox(width: 10.0),
+                      Text('Digital Game Design I', style: Theme.of(context).textTheme.bodyText1,),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.attachment),
+                      SizedBox(width: 10.0),
+                      Text('Digital Game Design II', style: Theme.of(context).textTheme.bodyText1,),
+                    ],
+                  ),
+                ],
+              ),),
+            SizedBox(height: 10.0,),
+          ],
+        ),
       ),
     );
   }

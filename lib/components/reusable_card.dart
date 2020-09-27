@@ -7,7 +7,6 @@ class ReusableCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final Widget cardChild;
-  //List<String> list;
 
   @override
   Widget build(BuildContext context) {
