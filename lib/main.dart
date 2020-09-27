@@ -19,11 +19,11 @@ class Home extends StatelessWidget {
         //fontFamily: 'Georgia',
         textTheme: TextTheme(
           //(ex) Dashboard, Collection
-          headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: kBlackColor),
           //(ex) Badge, In Progress, Digital Game Design
-          headline2: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          headline2: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: kBlackColor),
           //(ex) tab - DAISY, BROWNIE
-          headline3: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+          headline3: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, color: kBlackColor),
           //(ex) develop an app, annabelle enjoyed...
           bodyText1: TextStyle(
             fontSize: 15.0,
