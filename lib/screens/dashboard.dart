@@ -29,7 +29,7 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
           children: <Widget>[
             //TODO: Include list that reflects the undistributed badges/patches
-            ReusableCard(title: 'Undistributed', subtitle: '18 items',
+            ReusableCard(title: 'Undistributed', subtitle: '18 items', addIcon: false,
               cardChild: Column(
                 children: [
                   Row(
@@ -51,7 +51,7 @@ class _DashboardState extends State<Dashboard> {
             //TODO: Replace with graph (probably line for every member?)
             //list of chart: https://google.github.io/charts/flutter/gallery.html
             //library: https://pub.dev/packages/charts_flutter
-            ReusableCard(title: 'This Week', subtitle: '',
+            ReusableCard(title: 'This Week', subtitle: '', addIcon: false,
               cardChild: Column(
                 children: [
                   Row(
@@ -71,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),),
             //TODO: Replace with graph (probably line for every member?)
-            ReusableCard(title: 'This Month', subtitle: '',
+            ReusableCard(title: 'This Month', subtitle: '', addIcon: false,
               cardChild: Column(
                 children: [
                   Row(

@@ -17,9 +17,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     Dashboard(),
-    Settings(),
     Members(),
     Collection(),
+    Settings(),
   ];
 
   void _onItemTapped(int index) {

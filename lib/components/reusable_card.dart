@@ -3,10 +3,11 @@ import 'package:girl_scout_simple/components/constants.dart';
 
 class ReusableCard extends StatelessWidget {
 
-  ReusableCard({@required this.title, this.subtitle, @required this.cardChild});
+  ReusableCard({@required this.title, this.subtitle, @required this.addIcon, @required this.cardChild});
   final String title;
   final String subtitle;
   final Widget cardChild;
+  final bool addIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,19 @@ class ReusableCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headline2,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                //Note: Place empty container if add icon is not needed.
+                addIcon == false ? Container() :
+                GestureDetector( onTap: () {
+                  //TODO: implement functionality
+                }, child: Icon(Icons.add_circle), ),
+              ],
             ),
             //show only if subtitle is not null ('')
             subtitle == '' ? SizedBox(height: 0.0) : SizedBox(height: 10.0),
