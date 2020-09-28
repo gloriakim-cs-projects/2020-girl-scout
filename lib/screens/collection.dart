@@ -51,6 +51,11 @@ class _CollectionState extends State<Collection> {
               GestureDetector( onTap: () {
                 //TODO: implement functionality
               }, child: Icon(Icons.format_list_bulleted, color: kBlackColor,), ),
+              SizedBox(width: 10.0),
+              GestureDetector( onTap: () {
+                //TODO: implement functionality
+              }, child: Icon(Icons.get_app, color: kBlackColor,), ),
+              SizedBox(width: 10.0),
             ],
             backgroundColor: kWhiteColor,
 

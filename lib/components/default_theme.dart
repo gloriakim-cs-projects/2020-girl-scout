@@ -7,12 +7,12 @@ class DefaultTheme {
     accentColor: kGreenColor,
     //fontFamily: 'Georgia',
     textTheme: TextTheme(
-      //(ex) Dashboard, Collection
+      //(ex) Title - Dashboard, Collection
       headline1: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: kBlackColor),
-      //(ex) Badge, In Progress, Digital Game Design
+      //(ex) ReusableCard Title - Undistributed, Badge, This Month
       headline2: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: kBlackColor),
-      //(ex) tab - DAISY, BROWNIE
-      headline3: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: kBlackColor),
+      //(ex) Setting - About Us
+      headline3: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: kBlackColor),
       //(ex) develop an app, annabelle enjoyed...
       bodyText1: TextStyle(
         fontSize: 15.0,

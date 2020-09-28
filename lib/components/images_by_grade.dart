@@ -51,7 +51,9 @@ class ImagesByGrade extends StatelessWidget {
                         ],
                       ),
                     ],
-                  ),),
+                  ),
+                ),
+                SizedBox(height: 15.0),
               ],
             ),
           );
