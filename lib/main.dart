@@ -14,7 +14,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: DefaultTheme().theme,
       home: BottomNavigation(),
       routes: {
         BottomNavigation.id: (context) => BottomNavigation(),

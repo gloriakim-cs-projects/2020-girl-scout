@@ -20,7 +20,7 @@ class DefaultTheme {
       ),
       //(ex) 18 items, Coding for Good II
       bodyText2: TextStyle(
-        fontSize: 10.0,
+        fontSize: 12.0,
         color: kLightGreyColor,
       ),
     ),

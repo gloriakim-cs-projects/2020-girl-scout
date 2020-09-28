@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/components/member_by_grade.dart';
-import 'package:girl_scout_simple/components/reusable_card.dart';
+import 'package:girl_scout_simple/components/images_by_grade.dart';
 import 'package:girl_scout_simple/components/default_theme.dart';
 
 class Members extends StatefulWidget {
@@ -60,13 +59,13 @@ class _MembersState extends State<Members> {
           body: TabBarView(
             children: [
               //TODO: create a list of members and pass it
-              MemberByGrade(grade: "ALL"),
-              MemberByGrade(grade: "DAISY"),
-              MemberByGrade(grade: "BROWNIE"),
-              MemberByGrade(grade: "JUNIOR"),
-              MemberByGrade(grade: "CADETTE"),
-              MemberByGrade(grade: "SENIOR"),
-              MemberByGrade(grade: "AMBASSADOR"),
+              ImagesByGrade(grade: "ALL", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
+              ImagesByGrade(grade: "DAISY", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
+              ImagesByGrade(grade: "BROWNIE", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
+              ImagesByGrade(grade: "JUNIOR", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
+              ImagesByGrade(grade: "CADETTE", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
+              ImagesByGrade(grade: "SENIOR", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
+              ImagesByGrade(grade: "AMBASSADOR", title: "Team YAY!", subtitle: "18 members", numBox: 1,),
             ],
           ),
         ),
