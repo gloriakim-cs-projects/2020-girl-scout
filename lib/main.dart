@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/bottom_navigation.dart';
+import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
@@ -13,30 +14,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: kBlackColor,
-        accentColor: kGreenColor,
-        //fontFamily: 'Georgia',
-        textTheme: TextTheme(
-          //(ex) Dashboard, Collection
-          headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: kBlackColor),
-          //(ex) Badge, In Progress, Digital Game Design
-          headline2: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: kBlackColor),
-          //(ex) tab - DAISY, BROWNIE
-          headline3: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, color: kBlackColor),
-          //(ex) develop an app, annabelle enjoyed...
-          bodyText1: TextStyle(
-            fontSize: 15.0,
-            color: kBlackColor,
-          ),
-          //(ex) 18 items, Coding for Good II
-          bodyText2: TextStyle(
-            fontSize: 10.0,
-            color: kLightGreyColor,
-          ),
-        ),
-      ),
-      initialRoute: BottomNavigation.id,
+      theme: DefaultTheme().theme,
+      home: BottomNavigation(),
       routes: {
         BottomNavigation.id: (context) => BottomNavigation(),
         Dashboard.id: (context) => Dashboard(),

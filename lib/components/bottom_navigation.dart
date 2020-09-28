@@ -4,6 +4,7 @@ import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';
 import 'package:girl_scout_simple/screens/settings.dart';
+import 'package:girl_scout_simple/components/default_theme.dart';
 
 class BottomNavigation extends StatefulWidget {
   //navigation id
@@ -31,33 +32,33 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.equalizer),
-            title: Text('Dashboard'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            title: Text('Member'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.check_circle),
-            title: Text('Collection'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: kBlackColor,
-        unselectedItemColor: kLightGreyColor,
-        onTap: _onItemTapped,
-      ),
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.equalizer),
+              title: Text('Dashboard'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.group),
+              title: Text('Member'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.check_circle),
+              title: Text('Collection'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              title: Text('Settings'),
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: kBlackColor,
+          unselectedItemColor: kLightGreyColor,
+          onTap: _onItemTapped,
+        ),
     );
   }
 }
