@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 class Add extends StatefulWidget {
   //TODO: complete parameters
@@ -86,9 +87,51 @@ class _AddState extends State<Add> {
               SizedBox(height: 10),
               Text("Checklist", style: Theme.of(context).textTheme.headline2,),
               //TODO: add checklist
+            CheckboxListTile(
+              title: const Text('Animate Slowly'),
+              value: timeDilation != 1.0,
+              onChanged: (bool value) {
+                setState(() {
+                  //timeDilation = value ? 10.0 : 1.0;
+                });
+              },
+              secondary: const Icon(Icons.hourglass_empty),
+            ),
+//              new CheckboxListTile(
+//                title: Text("Add"),
+//                activeColor: kDarkGreyColor,
+//                checkColor: kWhiteColor,
+//                controlAffinity:
+//                  ListTileControlAffinity.leading,
+//                value: _checked,
+//                onChanged: (bool value) {
+//                setState(() {
+//                timeDilation = value ? 10.0 : 1.0;
+//                }),
+//              ),
               //TODO: add save button
               SizedBox(height: 10),
               //TODO: save button
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  child: MaterialButton(
+                    minWidth: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Save", style: TextStyle(fontSize: 25.0),),
+                    ),
+                    textColor: kWhiteColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(8.0),
+                    ),
+                    color: kDarkGreyColor,
+                    //TODO: save the material and pop the page (i.e., go back to previous page)
+                    onPressed: () => {},
+                  ),
+                ),
+              ),
+
             ],
           ),
         ),
@@ -111,8 +154,7 @@ class _GradeButtonState extends State<GradeButton> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      MaterialButton(
+    return MaterialButton(
       child: Text(widget.grade),
       //TODO: using minWidth will overflow for some phones... use proportional size of screen.
       minWidth: 120,
