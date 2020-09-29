@@ -77,6 +77,7 @@ class _AddState extends State<Add> {
               SizedBox(height: 10),
               Row(
                 children: [
+                  //TODO: Add functionality when clicked
                   PhotoButton(icon: 58055, name: "Gallery"),
                   SizedBox(width: 10),
                   PhotoButton(icon: 58386, name: "Camera"),
@@ -86,6 +87,8 @@ class _AddState extends State<Add> {
               Text("Checklist", style: Theme.of(context).textTheme.headline2,),
               //TODO: add checklist
               //TODO: add save button
+              SizedBox(height: 10),
+              //TODO: save button
             ],
           ),
         ),
