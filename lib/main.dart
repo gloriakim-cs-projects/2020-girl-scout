@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/bottom_navigation.dart';
-import 'package:girl_scout_simple/components/default_theme.dart';
-import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';

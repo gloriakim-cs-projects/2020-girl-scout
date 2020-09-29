@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
+import 'package:girl_scout_simple/screens/add.dart';
 
 class ReusableCard extends StatelessWidget {
 
@@ -35,11 +36,9 @@ class ReusableCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             parentPage == 'Setting' ? ExcludeTitle() : IncludeTitle(title: title, subtitle: subtitle, addIcon: addIcon),
-//            IncludeTitle(title: title, subtitle: subtitle, addIcon: addIcon),
             //show only if subtitle is not null ('')
             subtitle == '' ? SizedBox(height: 0.0) : SizedBox(height: 10.0),
             subtitle == '' ? SizedBox() : Text(subtitle, style: Theme.of(context).textTheme.bodyText2),
-            //show only if subtitle is not null ('')
             subtitle == '' ? SizedBox(height: 0.0) : SizedBox(height: 15.0),
             cardChild,
           ],
@@ -48,8 +47,6 @@ class ReusableCard extends StatelessWidget {
     );
   }
 }
-
-
 
 class ExcludeTitle extends StatelessWidget {
   @override
@@ -78,7 +75,9 @@ class IncludeTitle extends StatelessWidget {
           //Note: Place empty container if add icon is not needed.
           addIcon == false ? Container() :
           GestureDetector( onTap: () {
-            //TODO: implement functionality
+            //move to add
+            //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: title)));
           }, child: Icon(Icons.add_circle), ),
         ],
       );

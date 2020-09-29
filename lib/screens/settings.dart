@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/reusable_card.dart';
+import 'package:girl_scout_simple/components/setting_flat_button.dart';
 
 class Settings extends StatefulWidget {
   static String id = '/Settings';
@@ -100,28 +101,3 @@ class _SettingsState extends State<Settings> {
   }
 }
 
-
-class SettingFlatButton extends StatelessWidget {
-
-  SettingFlatButton({@required this.title, @required this.subtitle});
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return FlatButton(
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      onPressed: (){
-        //move to a new page to edit name
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          title == 'Delete All Data' ? Text(title, style: TextStyle(fontSize: 17, color: Colors.red),) :
-          Text(title, style: TextStyle(fontSize: 17, color: Colors.black),),
-          Icon(Icons.arrow_forward_ios, color: Colors.black12,),
-        ],
-      ),
-    );
-  }
-}

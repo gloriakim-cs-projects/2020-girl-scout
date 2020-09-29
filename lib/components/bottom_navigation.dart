@@ -4,7 +4,6 @@ import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';
 import 'package:girl_scout_simple/screens/settings.dart';
-import 'package:girl_scout_simple/components/default_theme.dart';
 
 class BottomNavigation extends StatefulWidget {
   //navigation id
