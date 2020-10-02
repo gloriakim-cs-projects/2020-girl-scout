@@ -21,6 +21,18 @@ class Data {
 
   Data(
       {this.grade, this.name, this.team, this.birthMonth, this.birthDay, this.birthYear, this.photoLocation});
+
+  Map<String, dynamic> toMap()
+  {
+    return{
+      'name' : name,
+      'team' : team,
+      'birthMonth' : birthMonth,
+      'birthDay' : birthDay,
+      'birthYear' : birthYear,
+      'photoPath' : photoLocation,
+    };
+  }
 }
 
 var allList = new List<Data>();
