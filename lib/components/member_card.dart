@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/screens/add.dart';
+import 'package:girl_scout_simple/components/member_container.dart';
+
 
 class AnimatedMemberCard extends StatefulWidget {
   final String parentPage;
   final String name;
   final String team;
-  final String grade;
+  final gradeEnum grade;
+  final String birthMonth;
+  final int birthDay;
+  final int birthYear;
   final int numBadgesCompleted;
   final String imageLocation;
 
   final bool expanded;
 
-  const AnimatedMemberCard({Key key, this.parentPage, this.name, this.team, this.grade, this.numBadgesCompleted, this.imageLocation, @required this.expanded}): super(key: key);
+  const AnimatedMemberCard({Key key, this.parentPage, this.name, this.team, this.grade, this.numBadgesCompleted, this.imageLocation, this.birthMonth, this.birthDay, this.birthYear, @required this.expanded}): super(key: key);
 
   @override
   _AnimatedMemberCard createState() => _AnimatedMemberCard();

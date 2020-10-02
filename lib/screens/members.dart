@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/images_by_grade.dart';
-import 'package:girl_scout_simple/components/member_card.dart';
 import 'package:girl_scout_simple/components/default_theme.dart';
-import 'package:girl_scout_simple/components/member_edit_card.dart';
-import 'package:girl_scout_simple/components/add_member_card.dart';
+import 'package:girl_scout_simple/components/member_container.dart';
 
 class Members extends StatefulWidget {
   static String id = '/Members';
-
-  var members = new List<AnimatedMemberCard>();
-  //members.add(AnimatedMemberCard(name: 'Christiana Ramey', team: 'Team! team'));
 
   @override
   _MembersState createState() => _MembersState();
@@ -22,11 +17,6 @@ class _MembersState extends State<Members> {
 
   @override
   Widget build(BuildContext context) {
-
-    var memberWidgets = List<Widget>();
-    for (var i = 0; i < 20; ++i ) {
-      memberWidgets.add(new AnimatedMemberCard(name: 'name', team: 'team', expanded: expanded));
-    }
     return MaterialApp(
       theme: DefaultTheme().theme,
       home: DefaultTabController(
@@ -79,182 +69,20 @@ class _MembersState extends State<Members> {
           //Note: ListView makes the page vertically scrollable.
           body: TabBarView(
             children: [
-              //TODO: create a list of members and pass it
               ListView( //all
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
+                  children: getMemberWidgetList(gradeEnum.ALL, expanded)),
               ListView( //daisy
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
+                  children: getMemberWidgetList(gradeEnum.DAISY, expanded)),
               ListView( //bownie
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
-              ListView( //junior
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
+                  children: getMemberWidgetList(gradeEnum.BROWNIE, expanded)),
               ListView( //cadette
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
+                  children: getMemberWidgetList(gradeEnum.JUNIOR, expanded)),
               ListView( //senior
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
+                  children: getMemberWidgetList(gradeEnum.CADETTE, expanded)),
+              ListView( //senior
+                  children: getMemberWidgetList(gradeEnum.SENIOR, expanded)),
               ListView( //ambassador
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Visibility(
-                            visible: !expanded,
-                            child: AnimatedAddCard(),
-                          )
-                        ]
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          AnimatedMemberCard(name: 'NewName', team: 'newTeam', expanded: expanded),
-                          AnimatedEditCard(expanded: expanded),
-                        ]
-                    ),
-                  ]),
+                  children: getMemberWidgetList(gradeEnum.AMBASSADOR, expanded)),
             ],
           ),
           floatingActionButton: FloatingActionButton( //pressing this creates options for editing members. its fancy. im sorry, i got carried away

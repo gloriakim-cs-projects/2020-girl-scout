@@ -37,7 +37,7 @@ class _AnimatedAddCard extends State<AnimatedAddCard> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(onTap: () {
-                  //I used this because im not sure how to just place buttons in the middle of the control. ill figure it out later. im tired.
+                  //I used this because im not sure how to just place buttons in the middle of the control. ill figure it out later. im tired.-
                 }, child: Icon(Icons.add, color: kWhiteColor,),),
               ]
           ),
