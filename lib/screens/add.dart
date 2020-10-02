@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:girl_scout_simple/components/member_container.dart';
+import 'package:girl_scout_simple/components/globals.dart';
+import 'package:girl_scout_simple/screens/members.dart';
+
 
 class Add extends StatefulWidget {
   //TODO: complete parameters
@@ -13,9 +17,22 @@ class Add extends StatefulWidget {
 }
 
 class _AddState extends State<Add> {
+
+  String name;
+  final nameController = TextEditingController();
+
+  //dispose of your text controllers? idk if we need to do this for all objects...
+  @override
+  void dispose(){
+    nameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: kWhiteColor, //change your color here
@@ -35,11 +52,12 @@ class _AddState extends State<Add> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Title", style: Theme.of(context).textTheme.headline2,),
-              TextField(
+              Text("Name", style: Theme.of(context).textTheme.headline2,),
+              TextField( //name
                 decoration: InputDecoration(
-                    hintText: 'Enter a search term'
+                    hintText: 'Enter a name'
                 ),
+                controller: nameController,
               ),
               SizedBox(height: 10),
               Text("Category", style: Theme.of(context).textTheme.headline2,),
@@ -126,8 +144,13 @@ class _AddState extends State<Add> {
                       borderRadius: new BorderRadius.circular(8.0),
                     ),
                     color: kDarkGreyColor,
-                    //TODO: save the material and pop the page (i.e., go back to previous page)
-                    onPressed: () => {},
+                    onPressed: () => {
+                      //TODO add error messages for unpopulated fields
+                      addScoutToList(gradeEnum.BROWNIE, 'testTeam', nameController.text, 'April', 21, 1996, 'notImplemented'),
+                      Navigator.pop(context),
+                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new Members())),
+
+                    },
                   ),
                 ),
               ),
@@ -164,7 +187,7 @@ class _GradeButtonState extends State<GradeButton> {
           side: BorderSide(color: pressed? kDarkGreyColor : kDarkGreyColor, width: 2.0),
       ),
       color: pressed ? kWhiteColor : kDarkGreyColor,
-      onPressed: () => setState(() => pressed = !pressed),
+      onPressed: () => setState(() => pressed = !pressed), //I wish I was this sooner!
     );
   }
 }

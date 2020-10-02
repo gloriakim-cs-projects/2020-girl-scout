@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/screens/add.dart';
 import 'package:girl_scout_simple/components/member_container.dart';
-
+import 'globals.dart';
 
 class AnimatedMemberCard extends StatefulWidget {
   final String parentPage;

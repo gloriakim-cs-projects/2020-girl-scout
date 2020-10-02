@@ -6,38 +6,9 @@ import 'package:girl_scout_simple/components/member_card.dart';
 import 'package:girl_scout_simple/components/member_edit_card.dart';
 import 'package:girl_scout_simple/components/add_member_card.dart';
 import 'package:flutter/material.dart';
+import 'package:girl_scout_simple/components/globals.dart' as globals;
+import 'package:girl_scout_simple/components/globals.dart';
 
-//I might also enumerate the months of the year, but idk.
-enum gradeEnum {
-  DAISY,
-  BROWNIE,
-  JUNIOR,
-  CADETTE,
-  SENIOR,
-  AMBASSADOR,
-  ALL,
-}
-
-class Data {
-  gradeEnum grade;
-  String name;
-  String team;
-  String birthMonth;
-  int birthDay;
-  int birthYear;
-  String photoLocation;
-
-  Data(
-      {this.grade, this.name, this.team, this.birthMonth, this.birthDay, this.birthYear, this.photoLocation});
-}
-
-var allList = new List<Data>();
-var daisyList = new List<Data>();
-var brownieList = new List<Data>();
-var juniorList = new List<Data>();
-var cadetteList = new List<Data>();
-var seniorList = new List<Data>();
-var ambassadorList = new List<Data>();
 
 //returns 0 if scout is placed in a list, this can be used my the add_member_card to verify that all fields are filled out
 int addScoutToList(gradeEnum grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoLocation) {
@@ -46,7 +17,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
 
   switch (grade) {
     case gradeEnum.DAISY:
-      daisyList.add(new Data(
+      globals.daisyList.add(new Data(
         grade: grade,
         name: name,
         team: team,
@@ -58,7 +29,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
       break;
 
     case gradeEnum.BROWNIE:
-      brownieList.add(new Data(
+      globals.brownieList.add(new Data(
         grade: grade,
         name: name,
         team: team,
@@ -70,7 +41,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
       break;
 
     case gradeEnum.JUNIOR:
-      juniorList.add(new Data(
+      globals.juniorList.add(new Data(
         grade: grade,
         name: name,
         team: team,
@@ -82,7 +53,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
       break;
 
     case gradeEnum.CADETTE:
-      cadetteList.add(new Data(
+      globals.cadetteList.add(new Data(
         grade: grade,
         name: name,
         team: team,
@@ -94,7 +65,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
       break;
 
     case gradeEnum.SENIOR:
-      seniorList.add(new Data(
+      globals.seniorList.add(new Data(
         grade: grade,
         name: name,
         team: team,
@@ -106,7 +77,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
       break;
 
     case gradeEnum.AMBASSADOR:
-      ambassadorList.add(new Data(
+      globals.ambassadorList.add(new Data(
         grade: grade,
         name: name,
         team: team,
@@ -120,7 +91,7 @@ int addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
     default:
       return 1;
   }
-  allList.add(new Data(
+  globals.allList.add(new Data(
     grade: grade,
     name: name,
     team: team,
@@ -140,7 +111,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
   switch (grade) {
     case gradeEnum.DAISY:
     //add member data as widget
-      for (var i in daisyList) {
+      for (var i in globals.daisyList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -156,7 +127,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
       }
       break;
     case gradeEnum.BROWNIE:
-      for (var i in brownieList) {
+      for (var i in globals.brownieList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -172,7 +143,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
       }
       break;
     case gradeEnum.JUNIOR:
-      for (var i in juniorList) {
+      for (var i in globals.juniorList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -188,7 +159,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
       }
       break;
     case gradeEnum.CADETTE:
-      for (var i in cadetteList) {
+      for (var i in globals.cadetteList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -204,7 +175,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
       }
       break;
     case gradeEnum.SENIOR:
-      for (var i in seniorList) {
+      for (var i in globals.seniorList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -220,7 +191,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
       }
       break;
     case gradeEnum.AMBASSADOR:
-      for (var i in ambassadorList) {
+      for (var i in globals.ambassadorList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -236,7 +207,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade, bool expanded) {
       }
       break;
     case gradeEnum.ALL:
-      for (var i in allList) {
+      for (var i in globals.allList) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

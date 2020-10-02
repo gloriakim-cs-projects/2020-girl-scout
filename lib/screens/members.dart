@@ -3,6 +3,7 @@ import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/images_by_grade.dart';
 import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/member_container.dart';
+import 'package:girl_scout_simple/components/globals.dart';
 
 class Members extends StatefulWidget {
   static String id = '/Members';
