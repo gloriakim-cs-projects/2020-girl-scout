@@ -1,7 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/screens/add.dart';
-import 'package:girl_scout_simple/components/member_container.dart';
 import 'globals.dart';
 
 class AnimatedMemberCard extends StatefulWidget {
@@ -15,9 +15,7 @@ class AnimatedMemberCard extends StatefulWidget {
   final int numBadgesCompleted;
   final String imageLocation;
 
-  final bool expanded;
-
-  const AnimatedMemberCard({Key key, this.parentPage, this.name, this.team, this.grade, this.numBadgesCompleted, this.imageLocation, this.birthMonth, this.birthDay, this.birthYear, @required this.expanded}): super(key: key);
+  const AnimatedMemberCard({Key key, this.parentPage, this.name, this.team, this.grade, this.numBadgesCompleted, this.imageLocation, this.birthMonth, this.birthDay, this.birthYear}): super(key: key);
 
   @override
   _AnimatedMemberCard createState() => _AnimatedMemberCard();
@@ -26,10 +24,9 @@ class AnimatedMemberCard extends StatefulWidget {
 class _AnimatedMemberCard extends State<AnimatedMemberCard> {
   @override
   Widget build(BuildContext context) {
-    bool canEdit = !widget.expanded;
     return AnimatedContainer(
       margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
-      width:  widget.expanded ? MediaQuery.of(context).size.width - 30 : MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width * 0.91,
       decoration: BoxDecoration(
         color: kWhiteColor,
         border: Border.all(
@@ -53,27 +50,29 @@ class _AnimatedMemberCard extends State<AnimatedMemberCard> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-
               //parentPage == 'Setting' ? ExcludeTitle() : IncludeTitle(title: title, subtitle: subtitle),
               //show only if subtitle is not null ('')
-              Column(
-                  children: <Widget>[
-                    Image(image: AssetImage('images/example_photo.png')),
-
-                  ]
+              Expanded(
+                flex: 4,
+                  child: Image.file(File(widget.imageLocation)),
               ),
               SizedBox(width: 10.0),
-              Column(
+              Expanded(
+                flex: 6,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    widget.parentPage == 'Setting' ? ExcludeTitle() : IncludeTitle(
-                        title: widget.name, subtitle: widget.team, addIcon: false),
-                    widget.team == '' ? SizedBox(height: 0.0) : SizedBox(height: 10.0),
-                    widget.team == '' ? SizedBox() : Text(widget.team, style: Theme
+                    Text(widget.name, style: Theme
                         .of(context)
                         .textTheme
-                        .subtitle1),
-                    //team == '' ? SizedBox(height: 0.0) : SizedBox(height: 15.0),
+                        .headline2,),
+                    Text(widget.team, style: Theme
+                        .of(context)
+                        .textTheme
+                        .subtitle1,),
                   ]
+              ),
               ),
               SizedBox(height: 20.0),
               Column(
@@ -92,43 +91,5 @@ class _AnimatedMemberCard extends State<AnimatedMemberCard> {
         ),
       ),
     );
-  }
-}
-
-
-
-class ExcludeTitle extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox();
-  }
-}
-
-class IncludeTitle extends StatelessWidget {
-
-  IncludeTitle({@required this.title, @required this.subtitle, @required this.addIcon});
-  final String title;
-  final String subtitle;
-  final bool addIcon;
-
-  @override
-  Widget build(BuildContext context) {
-    return
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headline2,
-          ),
-          //Note: Place empty container if add icon is not needed.
-          addIcon == false ? Container() :
-          GestureDetector( onTap: () {
-            //move to add
-            //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: title)));
-          }, child: Icon(Icons.add_circle), ),
-        ],
-      );
   }
 }

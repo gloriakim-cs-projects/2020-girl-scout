@@ -38,7 +38,7 @@ class GirlScoutDatabase {
     final path = await _localPath;
     return File('$path/ambassadorMembers.txt');
   }
-
+  
   Future<void> loadMembers(gradeEnum grade) async {
     try {
       List<String> contents;
@@ -79,7 +79,6 @@ class GirlScoutDatabase {
       return;
     }
   }
-
 
   Future<File> writeMemberList(gradeEnum grade) async {
     String temp = '';
@@ -123,15 +122,15 @@ class GirlScoutDatabase {
         final file = await _juniorMemberFile;
         for (var i in globals.juniorList) {
           temp += i.name;
-          temp += ' ';
+          temp += ';';
           temp += i.team;
-          temp += ' ';
+          temp += ';';
           temp += i.birthMonth;
-          temp += ' ';
+          temp += ';';
           temp += i.birthDay.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.birthYear.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.photoLocation;
           temp += '\n';
         }
@@ -140,15 +139,15 @@ class GirlScoutDatabase {
         final file = await _cadetteMemberFile;
         for (var i in globals.cadetteList) {
           temp += i.name;
-          temp += ' ';
+          temp += ';';
           temp += i.team;
-          temp += ' ';
+          temp += ';';
           temp += i.birthMonth;
-          temp += ' ';
+          temp += ';';
           temp += i.birthDay.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.birthYear.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.photoLocation;
           temp += '\n';
         }
@@ -157,15 +156,15 @@ class GirlScoutDatabase {
         final file = await _seniorMemberFile;
         for (var i in globals.seniorList) {
           temp += i.name;
-          temp += ' ';
+          temp += ';';
           temp += i.team;
-          temp += ' ';
+          temp += ';';
           temp += i.birthMonth;
-          temp += ' ';
+          temp += ';';
           temp += i.birthDay.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.birthYear.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.photoLocation;
           temp += '\n';
         }
@@ -174,15 +173,15 @@ class GirlScoutDatabase {
         final file = await _ambassadorMemberFile;
         for (var i in globals.ambassadorList) {
           temp += i.name;
-          temp += ' ';
+          temp += ';';
           temp += i.team;
-          temp += ' ';
+          temp += ';';
           temp += i.birthMonth;
-          temp += ' ';
+          temp += ';';
           temp += i.birthDay.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.birthYear.toString();
-          temp += ' ';
+          temp += ';';
           temp += i.photoLocation;
           temp += '\n';
         }

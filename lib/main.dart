@@ -10,7 +10,12 @@ import 'package:girl_scout_simple/screens/settings.dart';
 void main() {
   runApp(Home());
   GirlScoutDatabase db = GirlScoutDatabase();
+  db.loadMembers(gradeEnum.DAISY);
   db.loadMembers(gradeEnum.BROWNIE);
+  db.loadMembers(gradeEnum.JUNIOR);
+  db.loadMembers(gradeEnum.CADETTE);
+  db.loadMembers(gradeEnum.SENIOR);
+  db.loadMembers(gradeEnum.AMBASSADOR);
 }
 
 class Home extends StatelessWidget {
@@ -23,7 +28,7 @@ class Home extends StatelessWidget {
       routes: {
         BottomNavigation.id: (context) => BottomNavigation(),
         Dashboard.id: (context) => Dashboard(),
-        Members.id: (context) => Members(),
+        Members.id: (context) => new Members(),
         Collection.id: (context) => Collection(),
         Settings.id: (context) => Settings(),
       },
