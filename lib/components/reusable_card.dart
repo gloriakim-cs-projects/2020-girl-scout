@@ -77,7 +77,8 @@ class IncludeTitle extends StatelessWidget {
           GestureDetector( onTap: () {
             //move to add
             //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: title)));
+            //Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: title)));
+            Navigator.pop(context, "hi");
           }, child: Icon(Icons.add_circle), ),
         ],
       );
