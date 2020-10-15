@@ -376,7 +376,7 @@ class _AddState extends State<Add> {
                           child: _image == null ? SizedBox(height: 1) : ImgCrop(
                             image: FileImage(_image),
                             key: cropKey,
-                            chipShape: ChipShape.circle,
+                            chipShape: 'circle'
                       )
                       )
                     )
@@ -435,7 +435,7 @@ class _AddState extends State<Add> {
                       //TODO add error messages for unpopulated fields
                       final crop = cropKey.currentState;
                       final file = await crop.cropCompleted(
-                         _image, preferredSize: 800
+                         _image, pictureQuality: 800
                       );
                       final directory = await getApplicationDocumentsDirectory();
                       String name = file.path;
