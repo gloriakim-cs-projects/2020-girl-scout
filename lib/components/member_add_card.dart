@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/screens/add.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
+import 'package:girl_scout_simple/screens/member_add.dart';
 
 class AnimatedAddCard extends StatefulWidget {
   @override
@@ -42,7 +42,7 @@ class _AnimatedAddCard extends State<AnimatedAddCard> {
               ]
           ),
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: 'Add Member')));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MemberAdd(title: 'Add Member')));
           },
         ),
       ),

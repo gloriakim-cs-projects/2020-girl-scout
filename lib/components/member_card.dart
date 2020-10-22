@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/constants.dart';
-import 'globals.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
+import '../models/member_globals.dart';
 
 class AnimatedMemberCard extends StatefulWidget {
   final String parentPage;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/bottom_navigation.dart';
-import 'package:girl_scout_simple/components/globals.dart';
-import 'package:girl_scout_simple/components/database_operations.dart';
+import 'package:girl_scout_simple/components/all_bottom_navigation.dart';
+import 'package:girl_scout_simple/models/member_globals.dart';
+import 'package:girl_scout_simple/databases/member_database_operations.dart';
 import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';

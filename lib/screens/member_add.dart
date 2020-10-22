@@ -2,26 +2,25 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/constants.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:girl_scout_simple/components/member_container.dart';
-import 'package:girl_scout_simple/components/globals.dart';
+import 'package:girl_scout_simple/models/member_container.dart';
+import 'package:girl_scout_simple/models/member_globals.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simple_image_crop/simple_image_crop.dart';
-import 'package:girl_scout_simple/components/globals.dart' as globals;
+import 'package:girl_scout_simple/models/member_globals.dart' as globals;
 
-class Add extends StatefulWidget {
-  //TODO: complete parameters
-  Add({@required this.title});
-  String title; //(ex) Add Member
+class MemberAdd extends StatefulWidget {
+  MemberAdd({@required this.title});
+  final String title; //(ex) Add Member
 
   static String id = '/Add';
   @override
-  _AddState createState() => _AddState();
+  _MemberAddState createState() => _MemberAddState();
 }
 
-class _AddState extends State<Add> {
+class _MemberAddState extends State<MemberAdd> {
 
   String name;
   String team;

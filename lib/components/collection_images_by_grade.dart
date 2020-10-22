@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/reusable_card.dart';
+import 'package:girl_scout_simple/components/all_reusable_card.dart';
 
 class ImagesByGrade extends StatelessWidget {
 
@@ -27,27 +27,27 @@ class ImagesByGrade extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Image(image: AssetImage('images/example_photo.png')),
-                          Image(image: AssetImage('images/example_photo.png')),
-                          Image(image: AssetImage('images/example_photo.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
                         ],
                       ),
                       SizedBox(height: 10.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Image(image: AssetImage('images/example_photo.png')),
-                          Image(image: AssetImage('images/example_image.png')),
-                          Image(image: AssetImage('images/example_photo.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
                         ],
                       ),
                       SizedBox(height: 10.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Image(image: AssetImage('images/example_photo.png')),
-                          Image(image: AssetImage('images/example_photo.png')),
-                          Image(image: AssetImage('images/example_photo.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
+                          Image(image: AssetImage('images/example_badge.png')),
                         ],
                       ),
                     ],

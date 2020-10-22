@@ -4,11 +4,11 @@
 //return funtion of this file returns a list of rows, each holding a member and an edit widget. pretty neat right? flutter is great!
 import 'dart:io';
 
-import 'package:girl_scout_simple/components/database_operations.dart';
+import 'package:girl_scout_simple/databases/member_database_operations.dart';
 import 'package:girl_scout_simple/components/member_card.dart';
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/globals.dart' as globals;
-import 'package:girl_scout_simple/components/globals.dart';
+import 'package:girl_scout_simple/models/member_globals.dart' as globals;
+import 'package:girl_scout_simple/models/member_globals.dart';
 import 'package:flutter/widgets.dart';
 
 //returns 0 if scout is placed in a list, this can be used my the add_member_card to verify that all fields are filled out

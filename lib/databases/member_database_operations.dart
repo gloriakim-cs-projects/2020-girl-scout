@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:girl_scout_simple/components/globals.dart' as globals;
-import 'package:girl_scout_simple/components/globals.dart';
-import 'package:girl_scout_simple/components/member_container.dart';
+import 'package:girl_scout_simple/models/member_globals.dart' as globals;
+import 'package:girl_scout_simple/models/member_globals.dart';
+import 'package:girl_scout_simple/models/member_container.dart';
 
 class GirlScoutDatabase {
   Future<String> get _localPath async {

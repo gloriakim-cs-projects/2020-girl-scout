@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/components/reusable_card.dart';
-import 'package:girl_scout_simple/components/default_theme.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
+import 'package:girl_scout_simple/components/all_reusable_card.dart';
+import 'package:girl_scout_simple/components/all_default_theme.dart';
 
 class Dashboard extends StatefulWidget {
   static String id = '/Dashboard';

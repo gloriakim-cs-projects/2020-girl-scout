@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/components/images_by_grade.dart';
-import 'package:girl_scout_simple/components/default_theme.dart';
-import 'package:girl_scout_simple/components/member_container.dart';
-import 'package:girl_scout_simple/components/globals.dart';
-import 'package:girl_scout_simple/screens/add.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
+import 'package:girl_scout_simple/components/collection_images_by_grade.dart';
+import 'package:girl_scout_simple/components/all_default_theme.dart';
+import 'package:girl_scout_simple/models/member_container.dart';
+import 'package:girl_scout_simple/models/member_globals.dart';
+import 'package:girl_scout_simple/screens/member_add.dart';
 
 class MemberPageRoute extends CupertinoPageRoute {
   MemberPageRoute()
@@ -110,7 +110,7 @@ class _MembersState extends State<Members> {
           floatingActionButton: FloatingActionButton( //pressing this creates options for editing members. its fancy. im sorry, i got carried away
             onPressed: ()  {
               //TODO manage team members with actions such as add, delete, move, and edit
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>  new Add(title: 'Add Member')));
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>  new MemberAdd(title: 'Add Member')));
               setState(() {
 
               });

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/default_theme.dart';
-import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/components/images_by_grade.dart';
+import 'package:girl_scout_simple/components/all_default_theme.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
+import 'package:girl_scout_simple/components/collection_images_by_grade.dart';
 
 class Collection extends StatefulWidget {
   static String id = '/Collection';
@@ -32,7 +32,7 @@ class _CollectionState extends State<Collection> {
               ],
             ),
             title: const Text(
-              'Members',
+              'Collection',
               style: TextStyle(
                 color: kBlackColor,
                 fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:girl_scout_simple/components/constants.dart';
-import 'package:girl_scout_simple/screens/add.dart';
+import 'package:girl_scout_simple/components/all_constants.dart';
+import 'package:girl_scout_simple/screens/collection_add.dart';
+import 'package:girl_scout_simple/screens/practice_note_list.dart';
 
 class ReusableCard extends StatelessWidget {
 
@@ -76,9 +77,9 @@ class IncludeTitle extends StatelessWidget {
           addIcon == false ? Container() :
           GestureDetector( onTap: () {
             //move to add
-            //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
-            //Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: title)));
-            Navigator.pop(context, "hi");
+            //Navigator.push(context, MaterialPageRoute(builder: (context) => CollectionAdd()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NoteList()));
+            //Navigator.pop(context, "hi");
           }, child: Icon(Icons.add_circle), ),
         ],
       );

@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite: any  # sqflite
+  path: any     # sqflite
+  intl: ^0.15.7 # sqflite
   simple_image_crop:
   path_provider: ^1.6.7
   image_picker:
