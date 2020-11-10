@@ -1,4 +1,10 @@
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:girl_scout_simple/components//setting_flat_popup.dart';
+
 
 class SettingFlatButton extends StatelessWidget {
 
@@ -10,7 +16,18 @@ class SettingFlatButton extends StatelessWidget {
     return FlatButton(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: (){
-        //TODO: include necessary functionality
+        if(title == 'Delete All Data') {
+          AlertPopup(context);
+        }
+        else if(title == 'About Us'){
+          AboutUsPopup(context);
+        }
+        else if(title == 'Privacy Policy'){
+          PrivacyPolicyPopup(context);
+        }
+        else if(title == 'Terms of Use'){
+          TermsOfUsePopup(context);
+        }
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
