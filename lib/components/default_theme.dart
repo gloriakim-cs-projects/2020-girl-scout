@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 
 class DefaultTheme {
   ThemeData get theme => ThemeData(
-    primaryColor: kWhiteColor,
+    primaryColor: kWhiteColor ,
     accentColor: kGreenColor,
+    // scaffoldBackgroundColor: Color(0xFF2c2f33),
     //fontFamily: 'Georgia',
     textTheme: TextTheme(
       //(ex) Title - Dashboard, Collection

@@ -1,8 +1,13 @@
+//import 'dart:js';
+
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/reusable_card.dart';
 import 'package:girl_scout_simple/components/setting_flat_button.dart';
+
 
 class Settings extends StatefulWidget {
   static String id = '/Settings';
@@ -19,7 +24,7 @@ class _SettingsState extends State<Settings> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Setting',
+            'Settings',
             style: TextStyle(
               color: kBlackColor,
               fontWeight: FontWeight.bold,
@@ -75,7 +80,7 @@ class _SettingsState extends State<Settings> {
               ReusableCard(parentPage: 'Setting', title: '', subtitle: '', addIcon: false,
                   cardChild: Column(
                     children: [
-                      SettingFlatButton(title: "About Us"),
+                      SettingFlatButton(title: "About Us",),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: Divider(height: 1, color: kLightGreyColor,),
@@ -91,7 +96,7 @@ class _SettingsState extends State<Settings> {
               ),
               ReusableCard(parentPage: 'Setting', title: '', subtitle: '', addIcon: false,
                 cardChild: SettingFlatButton(title: "Delete All Data"),
-              ),
+                ),
               SizedBox(height: 15.0),
             ],
           ),
