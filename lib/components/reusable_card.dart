@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/screens/add.dart';
+import 'package:girl_scout_simple/screens/addBadge.dart';
 
 class ReusableCard extends StatelessWidget {
 
@@ -77,8 +78,10 @@ class IncludeTitle extends StatelessWidget {
           GestureDetector( onTap: () {
             //move to add
             //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
-            //Navigator.push(context, MaterialPageRoute(builder: (context) => Add(title: title)));
-            Navigator.pop(context, "hi");
+            (title == 'Badges') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new AddBadge(title: 'Add Badge'))) :
+            (title == 'Patches') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new AddBadge(title: 'Add Patch'))) :
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>  new Add(title: 'Add Member')));
+            //Navigator.pop(context, "hi");
           }, child: Icon(Icons.add_circle), ),
         ],
       );

@@ -21,11 +21,11 @@ class BadgeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       width: MediaQuery
           .of(context)
           .size
-          .width * 0.91,
+          .width * 0.845,
       decoration: BoxDecoration(
         color: kWhiteColor,
         border: Border.all(
@@ -71,12 +71,6 @@ class BadgeCard extends StatelessWidget {
                             .subtitle1,),
                       ]
                   ),
-                ),
-                SizedBox(height: 20.0),
-                Column(
-                    children: <Widget>[
-//TODO add number of bagdes completed in an elegant way, can be a button that appears when scout is ready to be moved to higher rank
-                    ]
                 ),
               ],
             ),

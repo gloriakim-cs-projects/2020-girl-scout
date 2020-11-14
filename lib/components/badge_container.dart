@@ -47,7 +47,7 @@ Row addBadgeToList(gradeEnum grade, String name, String description, List<String
       break;
   }
   globals.allListBadge.add(newData);
-  //db.writeBadgeList(grade); //this needs to work with HIVE
+  db.writeBadgeList(grade); //this needs to work with HIVE
 }
 
 void deleteMember(gradeEnum grade, BadgeData data)
@@ -78,7 +78,7 @@ void deleteMember(gradeEnum grade, BadgeData data)
   globals.allListBadge.remove(data);
   final dir = Directory(data.photoLocation);
   dir.delete(recursive:true); //maybe change to false
-  //db.writeBadgeList(grade); //HIVE
+  db.writeBadgeList(grade); //HIVE
 }
 
 //this function also add the add member card at the end of the list.
@@ -174,6 +174,7 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
     case gradeEnum.ALL:
       for (var i in globals.allListBadge) {
         returnList.add(new Row(
+
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               new BadgeCard(grade: i.grade,

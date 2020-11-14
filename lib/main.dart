@@ -24,6 +24,13 @@ void main() async{
   db.loadMembers(gradeEnum.CADETTE);
   db.loadMembers(gradeEnum.SENIOR);
   db.loadMembers(gradeEnum.AMBASSADOR);
+
+  db.loadBadges(gradeEnum.DAISY);
+  db.loadBadges(gradeEnum.BROWNIE);
+  db.loadBadges(gradeEnum.JUNIOR);
+  db.loadBadges(gradeEnum.CADETTE);
+  db.loadBadges(gradeEnum.SENIOR);
+  db.loadBadges(gradeEnum.AMBASSADOR);
   Hive.close();
 }
 
