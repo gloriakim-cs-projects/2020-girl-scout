@@ -6,8 +6,16 @@ import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';
 import 'package:girl_scout_simple/screens/settings.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+import 'models.dart';
+
+void main() async{
+  await Hive.initFlutter();
+  //Hive.registerAdapter(BadgeTagAdapter());
+  //var badgeTags = await Hive.openBox<BadgeTag>('badgeTags');
+
   runApp(Home());
   GirlScoutDatabase db = GirlScoutDatabase();
   db.loadMembers(gradeEnum.DAISY);
@@ -16,6 +24,7 @@ void main() {
   db.loadMembers(gradeEnum.CADETTE);
   db.loadMembers(gradeEnum.SENIOR);
   db.loadMembers(gradeEnum.AMBASSADOR);
+  Hive.close();
 }
 
 class Home extends StatelessWidget {
