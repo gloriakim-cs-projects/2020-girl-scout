@@ -3,6 +3,9 @@ import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/images_by_grade.dart';
 
+import 'package:girl_scout_simple/components/globals.dart';
+import 'package:girl_scout_simple/components/badge_container.dart';
+
 class Collection extends StatefulWidget {
   static String id = '/Collection';
 
@@ -32,7 +35,7 @@ class _CollectionState extends State<Collection> {
               ],
             ),
             title: const Text(
-              'Members',
+              'Badges',
               style: TextStyle(
                 color: kBlackColor,
                 fontWeight: FontWeight.bold,
@@ -64,15 +67,20 @@ class _CollectionState extends State<Collection> {
           //Note: ListView makes the page vertically scrollable.
           body: TabBarView(
             children: [
-              //TODO: create the list of collection and pass it
-              //TODO: count the number of boxes for each grade
-              ImagesByGrade(grade: "ALL", title: "Badge", subtitle: "18 collections", numBox: 1,),
-              ImagesByGrade(grade: "DAISY", title: "Badge", subtitle: "18 collections", numBox: 1,),
-              ImagesByGrade(grade: "BROWNIE", title: "Badge", subtitle: "18 collections", numBox: 1,),
-              ImagesByGrade(grade: "JUNIOR", title: "Badge", subtitle: "18 collections", numBox: 1,),
-              ImagesByGrade(grade: "CADETTE", title: "Badge", subtitle: "18 collections", numBox: 1,),
-              ImagesByGrade(grade: "SENIOR", title: "Badge", subtitle: "18 collections", numBox: 1,),
-              ImagesByGrade(grade: "AMBASSADOR", title: "Badge", subtitle: "18 collections", numBox: 1,),
+              ListView( //all
+                  children: getBadgeWidgetList(gradeEnum.ALL)),
+              ListView( //daisy
+                  children: getBadgeWidgetList(gradeEnum.DAISY)),
+              ListView( //bownie
+                  children: getBadgeWidgetList(gradeEnum.BROWNIE)),
+              ListView( //cadette
+                  children: getBadgeWidgetList(gradeEnum.JUNIOR)),
+              ListView( //senior
+                  children: getBadgeWidgetList(gradeEnum.CADETTE)),
+              ListView( //senior
+                  children: getBadgeWidgetList(gradeEnum.SENIOR)),
+              ListView( //ambassador
+                  children: getBadgeWidgetList(gradeEnum.AMBASSADOR)),
             ],
           ),
         ),
