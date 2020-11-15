@@ -13,8 +13,8 @@ import 'models.dart';
 
 void main() async{
   await Hive.initFlutter();
-  //Hive.registerAdapter(BadgeTagAdapter());
-  //var badgeTags = await Hive.openBox<BadgeTag>('badgeTags');
+  Hive.registerAdapter(BadgeTagAdapter());
+  await Hive.openBox<BadgeTag>('badgeTags');
 
   runApp(Home());
   GirlScoutDatabase db = GirlScoutDatabase();

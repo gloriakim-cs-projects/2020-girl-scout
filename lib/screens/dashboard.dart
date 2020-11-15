@@ -19,47 +19,57 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   List<charts.Series<Badge, String>> _seriesWeeklyData;
 
-  _getData() async{
-    var badgeTagsBox = await Hive.openBox<BadgeTag>('badgeTags');
+  _getData() {
+    var badgeTagsBox = Hive.box<BadgeTag>('badgeTags');
     var weeklyBadgesEarned = [0, 0, 0, 0, 0, 0, 0];
     var now = DateTime.now();
     var today = DateTime(now.year, now.month, now.day);
 
     // ---------------- test data (remove when done testing) ---------------
+
     var yesterday = today.subtract(new Duration(days: 1));
     var twodaysago = today.subtract(new Duration(days: 2));
     var threedaysago = today.subtract(new Duration(days: 3));
     var fourdaysago = today.subtract(new Duration(days: 4));
+    var fivedaysago = today.subtract(new Duration(days: 5));
+    var sixdaysago = today.subtract(new Duration(days: 6));
 
+    for(int day = 0; day < 14; ++day) {
+      badgeTagsBox.add( BadgeTag.date(today) );
+    }
 
-    for(int day = 0; day <= 15; ++day) {
+    for(int day = 0; day < 15; ++day) {
       badgeTagsBox.add( BadgeTag.date(yesterday) );
     }
 
-    for(int day = 0; day <= 10; ++day) {
+    for(int day = 0; day < 10; ++day) {
       badgeTagsBox.add( BadgeTag.date(twodaysago) );
     }
 
-    for(int day = 0; day <= 12; ++day) {
+    for(int day = 0; day < 12; ++day) {
       badgeTagsBox.add( BadgeTag.date(threedaysago) );
     }
 
-    for(int day = 0; day <= 7; ++day) {
+    for(int day = 0; day < 7; ++day) {
       badgeTagsBox.add( BadgeTag.date(fourdaysago) );
     }
 
+    for(int day = 0; day < 5; ++day) {
+      badgeTagsBox.add( BadgeTag.date(fivedaysago) );
+    }
+
+    for(int day = 0; day < 11; ++day) {
+      badgeTagsBox.add( BadgeTag.date(sixdaysago) );
+    }
     // ---------------------------------------------------------------------
 
-    for(int day = DateTime.monday; day <= DateTime.saturday; ++day) {
+    for(int day = DateTime.monday; day <= 7; ++day) {
       if(today.weekday == DateTime.sunday)
           break;
-      if(day < today.weekday) {
-        var earnedBadges = badgeTagsBox.values.where((badge) =>
-        (badge.dateAcquired ==
-            (today.subtract(new Duration(days: today.weekday - day + 1)))));
-        weeklyBadgesEarned[day - 1] = earnedBadges.length;
-      }
-      else break;
+      var earnedBadges = badgeTagsBox.values.where((badge) =>
+      (badge.dateAcquired ==
+          (today.subtract(new Duration(days: today.weekday - day + 1)))));
+      weeklyBadgesEarned[day - 1] = earnedBadges.length;
     }
 
     var weeklyBadges = [
