@@ -33,7 +33,7 @@ class _DashboardState extends State<Dashboard> {
     var fourdaysago = today.subtract(new Duration(days: 4));
     var fivedaysago = today.subtract(new Duration(days: 5));
     var sixdaysago = today.subtract(new Duration(days: 6));
-    
+
     for(int day = 0; day < 14; ++day) {
       badgeTagsBox.add( BadgeTag.date(today) );
     }
