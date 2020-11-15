@@ -47,7 +47,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.check_circle),
-              title: Text('Collection'),
+              title: Text('Badges'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
