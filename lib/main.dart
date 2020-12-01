@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/bottom_navigation.dart';
-import 'package:girl_scout_simple/components/globals.dart';
-import 'package:girl_scout_simple/components/database_operations.dart';
 import 'package:girl_scout_simple/screens/dashboard.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:girl_scout_simple/screens/collection.dart';
 import 'package:girl_scout_simple/screens/settings.dart';
+import 'package:girl_scout_simple/components/globals.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-import 'models.dart';
 
 void main() async{
-  await Hive.initFlutter();
-  Hive.registerAdapter(BadgeTagAdapter());
-  await Hive.openBox<BadgeTag>('badgeTags');
+  print('starting init');
+  await db.initDB();
+  print('finished init');
+  await db.loadMembers();
+  print('finished loading members');
 
-  runApp(Home());
-  GirlScoutDatabase db = GirlScoutDatabase();
-  db.loadMembers(gradeEnum.DAISY);
+  /*
   db.loadMembers(gradeEnum.BROWNIE);
   db.loadMembers(gradeEnum.JUNIOR);
   db.loadMembers(gradeEnum.CADETTE);
@@ -31,7 +28,10 @@ void main() async{
   db.loadBadges(gradeEnum.CADETTE);
   db.loadBadges(gradeEnum.SENIOR);
   db.loadBadges(gradeEnum.AMBASSADOR);
-  Hive.close();
+
+   */
+
+  runApp(Home());
 }
 
 class Home extends StatelessWidget {

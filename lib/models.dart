@@ -3,25 +3,35 @@ import 'dart:core';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'package:girl_scout_simple/components/globals.dart';
+
 part 'models.g.dart';
 
 @HiveType(typeId: 0)
-class Member {
+class Member extends HiveObject{
   @HiveField(0)
   String name;
 
   @HiveField(1)
-  Grade grade;
+  HiveList grade;
 
   @HiveField(2)
-  DateTime birthday;
+  String team;
 
   @HiveField(3)
-  List<BadgeTag> badgeTags;
+  DateTime birthday;
+
+  @HiveField(4)
+  String photoPath;
+
+  @HiveField(5)
+  HiveList badgeTags;
+
+  Member(this.name, this.grade, this.team, this.birthday, this.photoPath);
 }
 
 @HiveType(typeId: 1)
-class BadgeTag {
+class BadgeTag extends HiveObject{
   @HiveField(0)
   String status;
 
@@ -32,19 +42,22 @@ class BadgeTag {
   DateTime dateAcquired; // should not store the time
 
   @HiveField(3)
-  Badge badge;
+  HiveList badge;
 
   @HiveField(4)
-  Member member;
+  HiveList member;
+
+  @HiveField(5)
+  Map<String,String> requirementsMet;
 
   BadgeTag();
   BadgeTag.date(this.dateAcquired);
 }
 
 @HiveType(typeId: 2)
-class Badge {
+class Badge extends HiveObject{
   @HiveField(0)
-  String title;
+  String name;
 
   @HiveField(1)
   String subtitle;
@@ -53,7 +66,7 @@ class Badge {
   String description;
 
   @HiveField(3)
-  Grade grade;
+  HiveList grade;
 
   @HiveField(4)
   String type;
@@ -62,17 +75,49 @@ class Badge {
   List<String> requirements;
 
   @HiveField(6)
-  List<BadgeTag> badgeTags;
+  String photoPath;
+
+  @HiveField(7)
+  HiveList badgeTags;
+
+  Badge(this.name, this.description, this.grade, this.requirements, this.photoPath);
 }
 
 @HiveType(typeId: 3)
-class Grade {
+class Grade extends HiveObject {
   @HiveField(0)
-  String name;
+  gradeEnum name;
 
   @HiveField(1)
-  List<Member> members;
+  HiveList members;
 
   @HiveField(2)
-  List<Badge> badges;
+  HiveList badges;
+
+  Grade();
+  Grade.name(this.name);
+}
+
+@HiveType(typeId: 4)
+enum gradeEnum {
+  @HiveField(0)
+  DAISY,
+
+  @HiveField(1)
+  BROWNIE,
+
+  @HiveField(2)
+  JUNIOR,
+
+  @HiveField(3)
+  CADETTE,
+
+  @HiveField(4)
+  SENIOR,
+
+  @HiveField(5)
+  AMBASSADOR,
+
+  @HiveField(6)
+  ALL,
 }

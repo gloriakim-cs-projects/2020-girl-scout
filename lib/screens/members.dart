@@ -6,8 +6,9 @@ import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/images_by_grade.dart';
 import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/member_container.dart';
-import 'package:girl_scout_simple/components/globals.dart';
+//import 'package:girl_scout_simple/components/globals.dart';
 import 'package:girl_scout_simple/screens/add.dart';
+import 'package:girl_scout_simple/models.dart';
 
 class MemberPageRoute extends CupertinoPageRoute {
   MemberPageRoute()

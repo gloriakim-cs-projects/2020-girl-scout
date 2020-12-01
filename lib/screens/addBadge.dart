@@ -10,7 +10,8 @@ import 'package:girl_scout_simple/components/globals.dart';
 import 'package:girl_scout_simple/screens/members.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simple_image_crop/simple_image_crop.dart';
-import 'package:girl_scout_simple/components/globals.dart' as globals;
+//import 'package:girl_scout_simple/components/globals.dart' as globals;
+import 'package:girl_scout_simple/models.dart';
 
 class AddBadge extends StatefulWidget {
   //TODO: complete parameters
@@ -326,29 +327,8 @@ class _AddState extends State<AddBadge> {
 
                       final File localFile = await file.copy('$path');
 
-                      switch (gradeString)
-                      {
-                        //TODO make a case for ALL -- this is mostly for patches.
-
-                        case 'Daisy':
-                          addBadgeToList(gradeEnum.DAISY, nameController.text, descriptionController.text, getRequirements(), 0, path);
-                          break;
-                        case 'Brownie':
-                          addBadgeToList(gradeEnum.BROWNIE, nameController.text, descriptionController.text, getRequirements(), 0, path);
-                          break;
-                        case 'Junior':
-                          addBadgeToList(gradeEnum.JUNIOR, nameController.text, descriptionController.text, getRequirements(), 0, path);
-                          break;
-                        case 'Cadette':
-                          addBadgeToList(gradeEnum.CADETTE, nameController.text, descriptionController.text, getRequirements(), 0, path);
-                          break;
-                        case 'Senior':
-                          addBadgeToList(gradeEnum.SENIOR, nameController.text, descriptionController.text, getRequirements(), 0, path);
-                          break;
-                        case 'Ambassador':
-                          addBadgeToList(gradeEnum.AMBASSADOR, nameController.text, descriptionController.text, List<String>(), 0, path);
-                        break;
-                      }
+                      addBadgeToList(gradeString, nameController.text, descriptionController.text, getRequirements(), path);
+                      db.addBadge(gradeString, nameController.text, descriptionController.text, getRequirements(), path);
                       //Navigator.push(context, MaterialPageRoute(builder: (
                       //+context) => Members()));
                       Navigator.pop(context);

@@ -1,20 +1,27 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:girl_scout_simple/components/globals.dart' as globals;
+
+//import 'package:girl_scout_simple/components/globals.dart' as globals;
 import 'package:girl_scout_simple/components/globals.dart';
 import 'package:girl_scout_simple/components/member_container.dart';
 import 'package:girl_scout_simple/components/badge_container.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:girl_scout_simple/models.dart';
 
 ///HUGE TODO - make the work with our actual local database. I am using our old file system for now so that we can present our apps functionality!!!
+
 
 class GirlScoutDatabase {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
-
+/*
   ///MEMBERS
   Future<File> get _daisyMemberFile async {
     final path = await _localPath;
@@ -70,83 +77,106 @@ class GirlScoutDatabase {
     final path = await _localPath;
     return File('$path/ambassadorBadges.txt');
   }
+*/
+  Future<void> initDB() async{
+    WidgetsFlutterBinding.ensureInitialized();
+    final appDBDirectory = await getApplicationDocumentsDirectory();
+    await Hive.initFlutter(appDBDirectory.path);
+    Hive.registerAdapter(BadgeTagAdapter());
+    Hive.registerAdapter(BadgeAdapter());
+    Hive.registerAdapter(GradeAdapter());
+    Hive.registerAdapter(MemberAdapter());
+    Hive.registerAdapter(gradeEnumAdapter());
 
-  Future<void> loadMembers(gradeEnum grade) async {
+    ///*
+    await Hive.openBox('members');
+    await Hive.openBox('badgeTags');
+    await Hive.openBox('grades');
+    await Hive.openBox('badges');
+
+    // */
+    print('adding grades');
+    var gradeBox = Hive.box('grades');
+    if (gradeBox.isEmpty) {
+      gradeBox.put('Daisy', Grade.name(gradeEnum.DAISY));
+      gradeBox.put('Brownie', Grade.name(gradeEnum.BROWNIE));
+      gradeBox.put('Junior', Grade.name(gradeEnum.JUNIOR));
+      gradeBox.put('Cadette', Grade.name(gradeEnum.CADETTE));
+      gradeBox.put('Senior', Grade.name(gradeEnum.SENIOR));
+      gradeBox.put('Ambassador', Grade.name(gradeEnum.AMBASSADOR));
+    }
+
+  }
+
+  Future<void> loadMembers() async{
     try {
-      List<String> contents;
-      switch (grade)
-      {
-        case gradeEnum.DAISY:
-          final file = await _daisyMemberFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.BROWNIE:
-          final file = await _brownieMemberFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.JUNIOR:
-          final file = await _juniorMemberFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.CADETTE:
-          final file = await _cadetteMemberFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.SENIOR:
-          final file = await _seniorMemberFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.AMBASSADOR:
-          final file = await _ambassadorMemberFile;
-          contents = await file.readAsLines();
-          break;
-      }
-      for (var i in contents)
+      var memberBox = Hive.box('members');
+
+      for (var i in memberBox.values)
         {
-          List<String> j = i.split(';');
-          addScoutToList(grade, j[1], j[0], j[2], int.parse(j[3]), int.parse(j[4]), j[5]);
+          Grade grade = i.grade.first;
+          addScoutToList(describeEnum(grade.name), i.team, i.name, monthNames[i.birthday.month], i.birthday.day, i.birthday.year, i.photoPath);
         }
-    } catch (e) {
-      print("Load failed");
+    }
+    catch (e) {
+      print("Load member failed");
       return;
     }
   }
 
-  Future<void> loadBadges(gradeEnum grade) async {
+  void addMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) {
+    //try {
+    print('adding member');
+    Hive.openBox('members');
+      var memberBox = Hive.box('members'); //open boxes
+      var gradeBox = Hive.box('grades');
+
+      Hive.openBox('badgeTags');
+      Hive.openBox('grades');
+      Hive.openBox('badges');
+      Hive.openBox('grades');
+      var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
+      print(gradeLink);
+      gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
+      var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
+      Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
+      memberBox.add(member); // add member to db
+      /*
+    }
+    catch (e) {
+      print(e);
+      print("Add member failed");
+      return;
+    }
+
+       */
+  }
+
+  void deleteMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) {
     try {
-      List<String> contents;
-      switch (grade)
+      var memberBox = Hive.box('members'); //open boxes
+      var gradeBox = Hive.box('grades');
+
+      var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
+      gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
+      var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
+      Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
+      memberBox.add(member); // add member to db
+    }
+    catch (e) {
+      print("Add member failed");
+      return;
+    }
+  }
+
+  void loadBadges(gradeEnum grade) async {
+    try {
+      var badgeBox = Hive.box('badges');
+
+      for (var i in badgeBox.values)
       {
-        case gradeEnum.DAISY:
-          final file = await _daisyBadgeFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.BROWNIE:
-          final file = await _brownieBadgeFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.JUNIOR:
-          final file = await _juniorBadgeFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.CADETTE:
-          final file = await _cadetteBadgeFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.SENIOR:
-          final file = await _seniorBadgeFile;
-          contents = await file.readAsLines();
-          break;
-        case gradeEnum.AMBASSADOR:
-          final file = await _ambassadorBadgeFile;
-          contents = await file.readAsLines();
-          break;
-      }
-      for (var i in contents)
-      {
-        List<String> j = i.split(';');
-        List<String> requirements = j[2].split(':');
-        addBadgeToList(grade, j[0], j[1], requirements, int.parse(j[3]), j[3]);
+        Grade grade = i.grade.first;
+        addBadgeToList(describeEnum(grade.name), i.name, i.description, i.requirements, i.photoPath);
       }
     } catch (e) {
       print("Load failed");
@@ -154,6 +184,23 @@ class GirlScoutDatabase {
     }
   }
 
+  void addBadge(String grade, String name, String description, List<String> requirements, String photoLocation) {
+    try {
+      var badgerBox = Hive.box('badges'); //open boxes
+      var gradeBox = Hive.box('grades');
+
+      var gradeLink = HiveList(gradeBox); // create a hive list of grades
+      gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
+      Badge badge = Badge(name, description, gradeLink, requirements, photoLocation); // create member object based on data
+      badgerBox.add(badge); // add member to db
+    }
+    catch (e) {
+      print("Add member failed");
+      return;
+    }
+  }
+
+  /*
   Future<File> writeMemberList(gradeEnum grade) async {
     String temp = '';
     switch (grade) {
@@ -396,4 +443,5 @@ class GirlScoutDatabase {
         return file.writeAsString(temp);
     }
   }
+  */
 }

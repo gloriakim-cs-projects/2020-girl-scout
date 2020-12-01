@@ -3,9 +3,10 @@ import 'package:girl_scout_simple/components/default_theme.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/components/images_by_grade.dart';
 
-import 'package:girl_scout_simple/components/globals.dart';
+//import 'package:girl_scout_simple/components/globals.dart';
 import 'package:girl_scout_simple/components/badge_container.dart';
 import 'package:girl_scout_simple/components/reusable_card.dart';
+import 'package:girl_scout_simple/models.dart';
 
 class Collection extends StatefulWidget {
   static String id = '/Collection';

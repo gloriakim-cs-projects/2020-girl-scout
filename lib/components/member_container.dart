@@ -4,21 +4,45 @@
 //return funtion of this file returns a list of rows, each holding a member and an edit widget. pretty neat right? flutter is great!
 import 'dart:io';
 
-import 'package:girl_scout_simple/components/database_operations.dart';
+//import 'package:girl_scout_simple/components/database_operations.dart';
 import 'package:girl_scout_simple/components/member_card.dart';
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/globals.dart' as globals;
 import 'package:girl_scout_simple/components/globals.dart';
 import 'package:flutter/widgets.dart';
+import 'package:girl_scout_simple/models.dart';
 
 //returns 0 if scout is placed in a list, this can be used my the add_member_card to verify that all fields are filled out
-Row addScoutToList(gradeEnum grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoLocation) {
+void addScoutToList(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoLocation) {
   if (name == '') return null;
-  GirlScoutDatabase db = GirlScoutDatabase();
   //all other variables should come from a list the user has to chose, meaning that there is no room for empty fields as all fields will be populated with the first choice.
 
+  gradeEnum g;
+
+  switch (grade)
+      {
+    case 'Daisy':
+      g  = gradeEnum.DAISY;
+      break;
+    case 'Brownie':
+      g  = gradeEnum.BROWNIE;
+      break;
+    case 'Junior':
+      g  = gradeEnum.JUNIOR;
+      break;
+    case 'Cadette':
+      g  = gradeEnum.CADETTE;
+      break;
+    case 'Senior':
+      g  = gradeEnum.SENIOR;
+      break;
+    case 'Ambassador':
+      g = gradeEnum.AMBASSADOR;
+    break;
+  }
+
   var newData = new Data(
-    grade: grade,
+    grade: g,
     name: name,
     team: team,
     birthMonth: birthMonth,
@@ -27,7 +51,7 @@ Row addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
     photoLocation: photoLocation,
   );
 
-  switch (grade) {
+  switch (g) {
     case gradeEnum.DAISY:
       globals.daisyList.add(newData);
       break;
@@ -48,9 +72,10 @@ Row addScoutToList(gradeEnum grade, String team, String name, String birthMonth,
       break;
   }
   globals.allList.add(newData);
-  db.writeMemberList(grade);
-}
 
+  //db.writeMemberList(grade);
+}
+/*
 void deleteMember(gradeEnum grade, Data data)
 {
   GirlScoutDatabase db = GirlScoutDatabase();
@@ -81,6 +106,8 @@ void deleteMember(gradeEnum grade, Data data)
   dir.delete(recursive:true); //maybe change to false
   db.writeMemberList(grade);
 }
+
+ */
 
 //this function also add the add member card at the end of the list.
 List<Widget> getMemberWidgetList(gradeEnum grade) {

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'globals.dart';
+import 'package:girl_scout_simple/models.dart';
 
 class BadgeCard extends StatelessWidget {
 

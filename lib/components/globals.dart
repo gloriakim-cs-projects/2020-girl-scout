@@ -1,16 +1,42 @@
 
 //I might also enumerate the months of the year, but idk.
 import 'package:flutter/widgets.dart';
+import 'package:girl_scout_simple/components/database_operations.dart';
+import 'package:girl_scout_simple/models.dart';
 
-enum gradeEnum {
-  DAISY,
-  BROWNIE,
-  JUNIOR,
-  CADETTE,
-  SENIOR,
-  AMBASSADOR,
-  ALL,
-}
+
+GirlScoutDatabase db = GirlScoutDatabase();
+
+var monthNames = [
+  '', // ignore first position since months index from 1-12
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
+
+var monthNums = {
+  'January': 1,
+  'February': 2,
+  'March': 3,
+  'April': 4,
+  'May': 5,
+  'June': 6,
+  'July': 7,
+  'August': 8,
+  'September': 9,
+  'October': 10,
+  'November': 11,
+  'December': 12
+};
 
 class Data {
   gradeEnum grade;
@@ -42,11 +68,10 @@ class BadgeData {
   String name;
   String description;
   List<String> requirements;
-  int quantity;
   String photoLocation; //idk if we need this
 
   BadgeData(
-      {this.grade, this.name, this.description, this.requirements, this.quantity, this.photoLocation});
+      {this.grade, this.name, this.description, this.requirements, this.photoLocation});
 
   Map<String, dynamic> toMap()
   {
@@ -54,7 +79,6 @@ class BadgeData {
       'name' : name,
       'description' : description,
       'requirements' : requirements,
-      'quantity' : quantity,
       'photoPath' : photoLocation,
     };
   }
