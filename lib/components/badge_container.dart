@@ -173,7 +173,6 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
   }
 
   for (var i in gradeList) {
-    print(i.grade);
     returnList.add(new Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

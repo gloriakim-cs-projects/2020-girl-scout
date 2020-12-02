@@ -95,12 +95,16 @@ class GirlScoutDatabase {
     await Hive.openBox('badges');
 
     await db.loadMembers();
-    await db.loadBadges();
     print('finished loading members');
+    await db.loadBadges();
+    print('finished loading badges');
+
     // */
     print('adding grades');
     var gradeBox = Hive.box('grades');
     var badgeBox = Hive.box('badges');
+
+    imageCache.clear();
     if (gradeBox.isEmpty) {
       gradeBox.put('Daisy', Grade.name(gradeEnum.DAISY));
       gradeBox.put('Brownie', Grade.name(gradeEnum.BROWNIE));
