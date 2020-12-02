@@ -95,10 +95,12 @@ class GirlScoutDatabase {
     await Hive.openBox('badges');
 
     await db.loadMembers();
+    await db.loadBadges();
     print('finished loading members');
     // */
     print('adding grades');
     var gradeBox = Hive.box('grades');
+    var badgeBox = Hive.box('badges');
     if (gradeBox.isEmpty) {
       gradeBox.put('Daisy', Grade.name(gradeEnum.DAISY));
       gradeBox.put('Brownie', Grade.name(gradeEnum.BROWNIE));
@@ -166,7 +168,7 @@ class GirlScoutDatabase {
     }
   }
 
-  void loadBadges(gradeEnum grade) async {
+  Future<void> loadBadges() async {
     try {
       var badgeBox = Hive.box('badges');
 
@@ -183,13 +185,13 @@ class GirlScoutDatabase {
 
   void addBadge(String grade, String name, String description, List<String> requirements, String photoLocation) {
     try {
-      var badgerBox = Hive.box('badges'); //open boxes
+      var badgeBox = Hive.box('badges'); //open boxes
       var gradeBox = Hive.box('grades');
 
       var gradeLink = HiveList(gradeBox); // create a hive list of grades
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
       Badge badge = Badge(name, description, gradeLink, requirements, photoLocation); // create member object based on data
-      badgerBox.add(badge); // add member to db
+      badgeBox.add(badge); // add member to db
     }
     catch (e) {
       print("Add member failed");

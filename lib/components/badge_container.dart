@@ -173,6 +173,7 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
   }
 
   for (var i in gradeList) {
+    print(i.grade);
     returnList.add(new Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -180,7 +181,7 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
               name: i.name,
               description: i.description,
               requirements: i.requirements,
-              quantity: getBadgeNum(describeEnum(i.grade), i.name),
+              quantity: 0,//getBadgeNum(describeEnum(i.grade), i.name),
               photoLocation: i.photoLocation),
         ]));
   }

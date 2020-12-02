@@ -26,7 +26,6 @@ class _DashboardState extends State<Dashboard> {
      ///*
     var now = DateTime.now();
     var today = DateTime(now.year, now.month, now.day);
-    today = today.subtract(new Duration(days: 3));
     // ---------------- test data (remove when done testing) ---------------
 
     _badgeTagsBox.clear();
