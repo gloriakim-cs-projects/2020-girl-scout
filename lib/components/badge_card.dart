@@ -53,7 +53,7 @@ class BadgeCard extends StatelessWidget {
                 //show only if subtitle is not null ('')
                 Expanded(
                   flex: 4,
-                  child: Image(image: AssetImage('images/example_photo.png')),
+                  child: Image(image: AssetImage(photoLocation)),
                 ),
                 SizedBox(width: 10.0),
                 Expanded(

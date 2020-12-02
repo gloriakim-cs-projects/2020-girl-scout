@@ -12,8 +12,6 @@ void main() async{
   print('starting init');
   await db.initDB();
   print('finished init');
-  await db.loadMembers();
-  print('finished loading members');
 
   /*
   db.loadMembers(gradeEnum.BROWNIE);

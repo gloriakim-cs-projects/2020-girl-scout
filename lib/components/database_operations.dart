@@ -94,6 +94,8 @@ class GirlScoutDatabase {
     await Hive.openBox('grades');
     await Hive.openBox('badges');
 
+    await db.loadMembers();
+    print('finished loading members');
     // */
     print('adding grades');
     var gradeBox = Hive.box('grades');
@@ -127,14 +129,9 @@ class GirlScoutDatabase {
   void addMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) {
     //try {
     print('adding member');
-    Hive.openBox('members');
       var memberBox = Hive.box('members'); //open boxes
       var gradeBox = Hive.box('grades');
 
-      Hive.openBox('badgeTags');
-      Hive.openBox('grades');
-      Hive.openBox('badges');
-      Hive.openBox('grades');
       var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
       print(gradeLink);
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
