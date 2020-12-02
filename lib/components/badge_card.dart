@@ -52,15 +52,25 @@ class BadgeCard extends StatelessWidget {
                 //parentPage == 'Setting' ? ExcludeTitle() : IncludeTitle(title: title, subtitle: subtitle),
                 //show only if subtitle is not null ('')
                 Expanded(
-                  flex: 4,
-                  child: Image(image: AssetImage(photoLocation)),
+                  flex: 3,
+                  child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: FileImage(File(photoLocation)),
+                    fit: BoxFit.scaleDown
+                ),
+              ),
+            ),
                 ),
                 SizedBox(width: 10.0),
                 Expanded(
-                  flex: 6,
+                  flex: 7,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(name, style: Theme
                             .of(context)

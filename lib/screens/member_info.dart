@@ -12,6 +12,8 @@ import 'package:simple_image_crop/simple_image_crop.dart';
 import 'package:girl_scout_simple/components/globals.dart' as globals;
 import 'package:girl_scout_simple/components/database_operations.dart';
 import 'package:girl_scout_simple/components/reusable_card.dart';
+import 'package:girl_scout_simple/components/badge_container.dart';
+import 'package:girl_scout_simple/models.dart';
 
 class MemberInfo extends StatefulWidget {
   //TODO: complete parameters
@@ -52,7 +54,7 @@ class _AddState extends State<MemberInfo> {
           color: kWhiteColor, //change your color here
         ),
         title: Text(
-          "Member Information",
+          name,
           style: TextStyle(
             color: kWhiteColor,
             fontSize: 20.0,
@@ -60,58 +62,67 @@ class _AddState extends State<MemberInfo> {
         ),
         backgroundColor: kDarkGreyColor,),
       body: SingleChildScrollView(
-        child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-                children: <Widget>[
-                  Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 4,
-                          child: Container(
-                            width: 150,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: FileImage(File(imageLocation)),
-                                  fit: BoxFit.scaleDown
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0),
-                        Expanded(
-                          flex: 6,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Text(name, style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .headline2,),
-                                Text(team, style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .subtitle1,),
-                              ]
-                          ),
-                        ),
-                      ]
-                  ),
-                  SizedBox(height: 10.0),
-                  ReusableCard(
-                    title: 'Patches', subtitle: 'All', addIcon: true,
-                    cardChild:
-                    ListView(
-                        shrinkWrap: true,
-                        children: null //TODO add an overloaded function to get scouts badges and progress
-                    ),
-                  ),
+        child: Column(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
 
-                ]
-            )
+                      children: <Widget>[
+                        Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: FileImage(File(imageLocation)),
+                                        fit: BoxFit.scaleDown
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10.0),
+                              Expanded(
+                                flex: 6,
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .center,
+                                    children: <Widget>[
+                                      Text(name, style: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2,),
+                                      Text(team, style: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .subtitle1,),
+                                    ]
+                                ),
+                              ),
+                            ]
+                        ),
+
+                      ]
+                  )
+              ),
+              SizedBox(height: 10.0),
+              ReusableCard(
+                title: 'Scout\'s Badges',
+                subtitle: 'All',
+                addIcon: true,
+                cardChild:
+                ListView(
+                    shrinkWrap: true,
+                    children: getBadgeWidgetList(gradeEnum
+                        .ALL) //TODO add an overloaded function to get scouts badges and progress
+                ),
+              ),
+            ]
         ),
       ),
     );

@@ -47,6 +47,8 @@ class Data {
   int birthYear;
   String photoLocation;
 
+  //NOTES
+
   Data(
       {this.grade, this.name, this.team, this.birthMonth, this.birthDay, this.birthYear, this.photoLocation});
 
