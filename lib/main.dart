@@ -13,22 +13,6 @@ void main() async{
   await db.initDB();
   print('finished init');
 
-  /*
-  db.loadMembers(gradeEnum.BROWNIE);
-  db.loadMembers(gradeEnum.JUNIOR);
-  db.loadMembers(gradeEnum.CADETTE);
-  db.loadMembers(gradeEnum.SENIOR);
-  db.loadMembers(gradeEnum.AMBASSADOR);
-
-  db.loadBadges(gradeEnum.DAISY);
-  db.loadBadges(gradeEnum.BROWNIE);
-  db.loadBadges(gradeEnum.JUNIOR);
-  db.loadBadges(gradeEnum.CADETTE);
-  db.loadBadges(gradeEnum.SENIOR);
-  db.loadBadges(gradeEnum.AMBASSADOR);
-
-   */
-
   runApp(Home());
 }
 

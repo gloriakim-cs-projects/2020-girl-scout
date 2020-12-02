@@ -110,10 +110,6 @@ void deleteMember(gradeEnum grade, Data data)
  */
 
 //this function also add the add member card at the end of the list.
-List<Widget> getMemberBadges(Data data) {
-  var returnList = new List<Widget>();
-  return returnList;
-}
 List<Widget> getMemberWidgetList(gradeEnum grade) {
   var returnList = new List<Widget>();
 
