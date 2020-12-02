@@ -46,6 +46,8 @@ class Data {
   int birthDay;
   int birthYear;
   String photoLocation;
+  Map<BadgeTag, bool> listBadges;
+  Map<BadgeTag, bool> listPatches;
 
   Data(
       {this.grade, this.name, this.team, this.birthMonth, this.birthDay, this.birthYear, this.photoLocation});
