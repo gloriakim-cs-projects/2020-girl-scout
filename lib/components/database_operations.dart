@@ -103,7 +103,7 @@ class GirlScoutDatabase {
     print('adding grades');
     var gradeBox = Hive.box('grades');
     var badgeBox = Hive.box('badges');
-
+    await badgeBox.clear();
     imageCache.clear();
     if (gradeBox.isEmpty) {
       gradeBox.put('Daisy', Grade.name(gradeEnum.DAISY));
@@ -132,7 +132,7 @@ class GirlScoutDatabase {
     }
   }
 
-  void addMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) {
+  Future<void> addMember (String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) async{
     //try {
     print('adding member');
       var memberBox = Hive.box('members'); //open boxes
@@ -143,7 +143,10 @@ class GirlScoutDatabase {
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
       var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
       Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
-      memberBox.add(member); // add member to db
+      memberBox.put(name, member); // add member to db
+
+      Grade gradeObj = gradeBox.get(grade); // get grade from db
+      gradeObj.members.add(member); // add member to grades
       /*
     }
     catch (e) {
@@ -155,7 +158,25 @@ class GirlScoutDatabase {
        */
   }
 
-  void deleteMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) {
+  Member getMember (String name) {
+    //try {
+    print('getting member');
+    var memberBox = Hive.box('members'); //open member box
+
+    Member member = memberBox.get(name); // get member
+    return member;
+    /*
+    }
+    catch (e) {
+      print(e);
+      print("Add member failed");
+      return;
+    }
+
+       */
+  }
+
+  Future<void> deleteMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) async{
     try {
       var memberBox = Hive.box('members'); //open boxes
       var gradeBox = Hive.box('grades');
@@ -187,7 +208,7 @@ class GirlScoutDatabase {
     }
   }
 
-  void addBadge(String grade, String name, String description, List<String> requirements, String photoLocation) {
+  Future<void> addBadge(String grade, String name, String description, List<String> requirements, String photoLocation) async{
     try {
       var badgeBox = Hive.box('badges'); //open boxes
       var gradeBox = Hive.box('grades');
@@ -196,11 +217,42 @@ class GirlScoutDatabase {
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
       Badge badge = Badge(name, description, gradeLink, requirements, photoLocation); // create member object based on data
       badgeBox.add(badge); // add member to db
+
+      Grade gradeObj = gradeBox.get(grade); // get grade from db
+      gradeObj.badges.add(badge); // add member to grades
     }
     catch (e) {
       print("Add member failed");
       return;
     }
+  }
+
+
+  List<Badge> getMemberUncompletedBadges (String name) {
+    //try {
+    print('getting member\'s uncompleted badges');
+
+    var badgeBox = Hive.box('badges');
+    var gradeBox = Hive.box('grades');
+
+    Member member = getMember(name); //get member
+    Grade memberGrade = member.grade.first; // get member's grade
+    var badgeGradeList = memberGrade.badges; // get badges for member's grade
+    for (BadgeTag i in member.badgeTags) { // for each badge the member has
+      Badge memberBadge = i.badge.first; // get badge
+      badgeGradeList.remove(memberBadge); // remove badge
+    }
+
+    return badgeGradeList.toList();
+    /*
+    }
+    catch (e) {
+      print(e);
+      print("Add member failed");
+      return;
+    }
+
+       */
   }
 
   /*

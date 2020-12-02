@@ -86,6 +86,37 @@ class BadgeData {
   }
 }
 
+List<BadgeData> getGradeBadges(gradeEnum grade) {
+  var gradeList;
+
+  switch (grade) {
+    case gradeEnum.DAISY:
+    //add member data as widget
+      gradeList =  daisyListBadge;
+      break;
+    case gradeEnum.BROWNIE:
+      gradeList =  brownieListBadge;
+      break;
+    case gradeEnum.JUNIOR:
+      gradeList =  juniorListBadge;
+      break;
+    case gradeEnum.CADETTE:
+      gradeList =  cadetteListBadge;
+      break;
+    case gradeEnum.SENIOR:
+      gradeList =  seniorListBadge;
+      break;
+    case gradeEnum.AMBASSADOR:
+      gradeList = ambassadorListBadge;
+      break;
+    case gradeEnum.ALL:
+      gradeList = allListBadge;
+      break;
+  }
+
+  return gradeList;
+}
+
 int count = 0;
 var allList = new List<Data>();
 var daisyList = new List<Data>();
