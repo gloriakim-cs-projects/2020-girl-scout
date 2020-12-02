@@ -120,13 +120,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;
@@ -135,13 +129,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;
@@ -150,13 +138,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;
@@ -165,13 +147,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;
@@ -180,13 +156,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;
@@ -195,13 +165,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;
@@ -210,13 +174,7 @@ List<Widget> getMemberWidgetList(gradeEnum grade) {
         returnList.add(new Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              new AnimatedMemberCard(name: i.name,
-                  team: i.team,
-                  grade: i.grade,
-                  birthMonth: i.birthMonth,
-                  birthDay: i.birthDay,
-                  birthYear: i.birthYear,
-                  imageLocation: i.photoLocation),
+              new AnimatedMemberCard(data: i),
             ]));
       }
       break;

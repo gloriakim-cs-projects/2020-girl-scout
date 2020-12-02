@@ -69,7 +69,7 @@ class _CollectionState extends State<Collection> {
           //Note: ListView makes the page vertically scrollable.
           body: TabBarView(
             children: [
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'All', addIcon: true,
@@ -94,7 +94,7 @@ class _CollectionState extends State<Collection> {
                     ),
                   ]
               ),
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'Daisy', addIcon: true,
@@ -119,7 +119,7 @@ class _CollectionState extends State<Collection> {
                     ),
                   ]
               ),
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'Brownie', addIcon: true,
@@ -144,7 +144,7 @@ class _CollectionState extends State<Collection> {
                     ),
                   ]
               ),
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'Junior', addIcon: true,
@@ -169,7 +169,7 @@ class _CollectionState extends State<Collection> {
                     ),
                   ]
               ),
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'Cadette', addIcon: true,
@@ -194,7 +194,7 @@ class _CollectionState extends State<Collection> {
                     ),
                   ]
               ),
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'Senior', addIcon: true,
@@ -219,7 +219,7 @@ class _CollectionState extends State<Collection> {
                     ),
                   ]
               ),
-              Column(
+              ListView(
                   children: <Widget>[
                     ReusableCard(
                       title: 'Badges', subtitle: 'Ambassador', addIcon: true,
