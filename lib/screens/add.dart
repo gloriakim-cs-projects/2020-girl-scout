@@ -447,7 +447,7 @@ class _AddState extends State<Add> {
                       final File localFile = await file.copy('$path');
 
                       addScoutToList(gradeString, teamController.text, nameController.text, month, day, year, path);
-                      db.addMember(gradeString, teamController.text, nameController.text, month, day, year, path);
+                      await db.addMember(gradeString, teamController.text, nameController.text, month, day, year, path);
                       //Navigator.push(context, MaterialPageRoute(builder: (
                           //+context) => Members()));
                       Navigator.pop(context);

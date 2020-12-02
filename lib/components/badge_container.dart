@@ -147,33 +147,9 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
   var returnList = new List<Widget>();
   var gradeList;
 
-  switch (grade) {
-    case gradeEnum.DAISY:
-    //add member data as widget
-      gradeList =  globals.daisyListBadge;
-      break;
-    case gradeEnum.BROWNIE:
-      gradeList =  globals.brownieListBadge;
-      break;
-    case gradeEnum.JUNIOR:
-      gradeList =  globals.juniorListBadge;
-      break;
-    case gradeEnum.CADETTE:
-      gradeList =  globals.cadetteListBadge;
-      break;
-    case gradeEnum.SENIOR:
-      gradeList =  globals.seniorListBadge;
-      break;
-    case gradeEnum.AMBASSADOR:
-      gradeList = globals.ambassadorListBadge;
-      break;
-    case gradeEnum.ALL:
-      gradeList = globals.allListBadge;
-      break;
-  }
+  gradeList = globals.getGradeBadges(grade);
 
   for (var i in gradeList) {
-    print(i.grade);
     returnList.add(new Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -183,6 +159,27 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
               requirements: i.requirements,
               quantity: 0,//getBadgeNum(describeEnum(i.grade), i.name),
               photoLocation: i.photoLocation),
+        ]));
+  }
+  return returnList;
+}
+
+//this function also add the add member card at the end of the list.
+List<Widget> getScoutUncompletedBadgesWidgetList(String name) {
+  var returnList = new List<Widget>();
+  var uncompletedBadgesList = globals.db.getMemberUncompletedBadges(name);
+  
+  for (var i in uncompletedBadgesList) {
+    Grade badgeGrade = i.grade.first;
+    returnList.add(new Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          new BadgeCard(grade: badgeGrade.name,
+              name: i.name,
+              description: i.description,
+              requirements: i.requirements,
+              quantity: 0,//getBadgeNum(describeEnum(i.grade), i.name),
+              photoLocation: i.photoPath),
         ]));
   }
   return returnList;

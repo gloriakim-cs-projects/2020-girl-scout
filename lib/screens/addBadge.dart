@@ -327,8 +327,9 @@ class _AddState extends State<AddBadge> {
 
                       final File localFile = await file.copy('$path');
 
+                      print(path);
                       addBadgeToList(gradeString, nameController.text, descriptionController.text, getRequirements(), path);
-                      db.addBadge(gradeString, nameController.text, descriptionController.text, getRequirements(), path);
+                      await db.addBadge(gradeString, nameController.text, descriptionController.text, getRequirements(), path);
                       //Navigator.push(context, MaterialPageRoute(builder: (
                       //+context) => Members()));
                       Navigator.pop(context);
