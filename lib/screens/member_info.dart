@@ -118,7 +118,7 @@ class _AddState extends State<MemberInfo> {
                 cardChild:
                 ListView(
                     shrinkWrap: true,
-                    children: getScoutUncompletedBadgesWidgetList(name) //TODO add an overloaded function to get scouts badges and progress
+                    children: getScoutBadgesWidgetList(name) //TODO add an overloaded function to get scouts badges and progress
                 ),
               ),
             ]

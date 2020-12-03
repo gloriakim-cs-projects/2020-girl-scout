@@ -165,23 +165,28 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
 }
 
 //this function also add the add member card at the end of the list.
-List<Widget> getScoutUncompletedBadgesWidgetList(String name) {
+List<Widget> getScoutBadgesWidgetList(String name) {
   var returnList = new List<Widget>();
-  var uncompletedBadgesList = globals.db.getMemberUncompletedBadges(name);
-  
-  for (var i in uncompletedBadgesList) {
-    Grade badgeGrade = i.grade.first;
-    returnList.add(new Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          new BadgeCard(grade: badgeGrade.name,
-              name: i.name,
-              description: i.description,
-              requirements: i.requirements,
-              quantity: 0,//getBadgeNum(describeEnum(i.grade), i.name),
-              photoLocation: i.photoPath),
-        ]));
+  var memberBadgesadgesList = globals.db.getMemberBadges(name);
+
+  if (memberBadgesadgesList != null) {
+    print('creating member\'s badges widgets');
+    for (var i in memberBadgesadgesList) {
+      Grade badgeGrade = i.grade.first;
+      returnList.add(new Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            new BadgeCard(grade: badgeGrade.name,
+                name: i.name,
+                description: i.description,
+                requirements: i.requirements,
+                quantity: 0,
+                //getBadgeNum(describeEnum(i.grade), i.name),
+                photoLocation: i.photoPath),
+          ]));
+    }
   }
+  print('returning member\'s badges widgets');
   return returnList;
 }
 

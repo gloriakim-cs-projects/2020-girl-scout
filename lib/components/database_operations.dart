@@ -228,7 +228,7 @@ class GirlScoutDatabase {
   }
 
 
-  List<Badge> getMemberUncompletedBadges (String name) {
+  List<Badge> getMemberBadges (String name) {
     //try {
     print('getting member\'s uncompleted badges');
 
@@ -237,13 +237,16 @@ class GirlScoutDatabase {
 
     Member member = getMember(name); //get member
     Grade memberGrade = member.grade.first; // get member's grade
+    print(memberGrade);
     var badgeGradeList = memberGrade.badges; // get badges for member's grade
-    for (BadgeTag i in member.badgeTags) { // for each badge the member has
-      Badge memberBadge = i.badge.first; // get badge
-      badgeGradeList.remove(memberBadge); // remove badge
+    print(badgeGradeList);
+    if (badgeGradeList != null) {
+      print('returning member\'s badges');
+      return badgeGradeList.toList();
     }
+    print('member has no badges');
+    return null;
 
-    return badgeGradeList.toList();
     /*
     }
     catch (e) {
