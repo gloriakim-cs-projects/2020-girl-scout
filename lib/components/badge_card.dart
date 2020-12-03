@@ -28,7 +28,7 @@ class BadgeCard extends StatelessWidget {
       width: MediaQuery
           .of(context)
           .size
-          .width * 0.845,
+          .width * 0.80,
       decoration: BoxDecoration(
         color: kWhiteColor,
         border: Border.all(
