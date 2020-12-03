@@ -116,36 +116,40 @@ List<BadgeData> getGradeBadges(gradeEnum grade) {
 
   return gradeList;
 }
-/*
-gradeEnum gradeS
-  switch (grade)
-  {
+
+gradeEnum gradeStringtoEnum(String grade) {
+  var g;
+
+  switch (grade) {
     case 'Daisy':
     case 'DAISY':
-      g  = gradeEnum.DAISY;
+      g = gradeEnum.DAISY;
       break;
     case 'Brownie':
     case 'BROWNIE':
-      g  = gradeEnum.BROWNIE;
+      g = gradeEnum.BROWNIE;
       break;
     case 'Junior':
     case 'JUNIOR':
-      g  = gradeEnum.JUNIOR;
+      g = gradeEnum.JUNIOR;
       break;
     case 'Cadette':
     case 'CADETTE':
-      g  = gradeEnum.CADETTE;
+      g = gradeEnum.CADETTE;
       break;
     case 'Senior':
     case 'SENIOR':
-      g  = gradeEnum.SENIOR;
+      g = gradeEnum.SENIOR;
       break;
     case 'Ambassador':
     case 'AMBASSADOR':
       g = gradeEnum.AMBASSADOR;
       break;
   }
-*/
+  return g;
+
+}
+
 
 int count = 0;
 var allList = new List<Data>();
