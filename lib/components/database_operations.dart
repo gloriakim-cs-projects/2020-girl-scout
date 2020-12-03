@@ -71,7 +71,7 @@ class GirlScoutDatabase {
     await Hive.openBox('badges');
 
     /*
-    var gradeBox = Hive.openBox('grades');
+    var gradeBox = Hive.box('grades');
     var memberBox = Hive.box('members');
     var badgeBox = Hive.box('badges');
     await badgeBox.clear();
@@ -244,7 +244,7 @@ class GirlScoutDatabase {
     var badgeBox = Hive.box('badges');
     var badgeTagBox = Hive.box('badgeTags');
 
-    Map<String,String> requirementsMet;
+    Map<String,String> requirementsMet = Map();
 
     var badgeLink = HiveList(badgeBox); // create a hive list to hold 1 badge
     badgeLink.add(badge); // link badge to badgeTag
@@ -252,17 +252,23 @@ class GirlScoutDatabase {
     var memberLink = HiveList(memberBox); // create a hive list to hold 1 member
     memberLink.add(member); // link member to badgeTag
 
-      for (var i in badge.requirements) { // for each badge requirement
-        if (i != "") requirementsMet[i] = "No"; // mark incomplete
-      }
+    for (var i in badge.requirements) { // for each badge requirement
+      if (i != "") requirementsMet[i] = "No"; // mark incomplete
+    }
 
 
     BadgeTag badgeTag = BadgeTag(badgeLink, memberLink, requirementsMet); // create badgeTag
 
-
     badgeTagBox.add(badgeTag); // add badgeTag to db
+    for (var i in badgeTagBox.values) {
+      print('badge tag box values');
+      print(i.status);
+    }
+
     badge.badgeTags.add(badgeTag); // link badgeTag to badge
     member.badgeTags.add(badgeTag); // link badgeTag to member
+    BadgeTag memberbadge = member.badgeTags.first;
+    print(memberbadge.status);
     /*
     }
     catch (e) {
@@ -278,8 +284,12 @@ class GirlScoutDatabase {
     //try {
     print('getting member\'s badges');
 
-    var badgeBox = Hive.box('badges');
-    var gradeBox = Hive.box('grades');
+    var badgeTagBox = Hive.box('badgeTags');
+
+    for (var i in badgeTagBox.values) {
+      print('badge tag box values');
+      print(i.status);
+    }
 
     Member member = getMember(name); //get member
     HiveList memberBadges = member.badgeTags; // get member's badges

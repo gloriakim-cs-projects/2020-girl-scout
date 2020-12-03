@@ -126,17 +126,19 @@ List<Widget> getScoutBadgesWidgetList(String name) {
   if (memberBadgesList != null) {
     print('creating member\'s badges widgets');
     for (var i in memberBadgesList) {
-      Grade badgeGrade = i.grade.first;
+      print(i.status);
+      Badge memberBadge = i.badge.first;
+      Grade badgeGrade = memberBadge.grade.first;
       returnList.add(new Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             new BadgeCard(grade: badgeGrade.name,
-                name: i.name,
-                description: i.description,
-                requirements: i.requirements,
+                name: memberBadge.name,
+                description: memberBadge.description,
+                requirements: memberBadge.requirements,
                 quantity: 0,
                 //getBadgeNum(describeEnum(i.grade), i.name),
-                photoLocation: i.photoPath),
+                photoLocation: memberBadge.photoPath),
           ]));
     }
   }

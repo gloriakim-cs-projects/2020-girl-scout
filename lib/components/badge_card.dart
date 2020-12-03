@@ -87,7 +87,7 @@ class BadgeCard extends StatelessWidget {
                 ),
               ],
             ),
-            onTap: () {
+            onTap: () async{
               //TODO create funtion so that if state is triggered, bring up edit page with populated information for tapped scout
               if (selectable) {
                   //add badge to scout list
@@ -99,7 +99,7 @@ class BadgeCard extends StatelessWidget {
                 Member member = db.getMember(memberData.name); //get member
                 Badge badge = db.getBadge(name);
 
-                db.addBadgeTag(member, badge);
+                await db.addBadgeTag(member, badge);
                 Navigator.pop(context, true);
                 }
               else {
