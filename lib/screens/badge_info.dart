@@ -28,34 +28,33 @@ class BadgeInfo extends StatefulWidget {
 class _AddState extends State<BadgeInfo> {
 
   Badge badge;
-
+  var changedChecks = new Map<String, bool>();
 
   @override
   Widget build(BuildContext context) {
     badge = widget.badge;
     var requirementList = new List<Widget>();
-    var changedChecks = new List<bool>();
-    int index = 0;
+
 
     for (var i in badge.requirements) {
       if (i != "") {
-        changedChecks.add(false);
-        print(changedChecks.length);
+        changedChecks[i] = false;
         requirementList.add(
           new CheckboxListTile(
-            controlAffinity: ListTileControlAffinity.platform,
+              controlAffinity: ListTileControlAffinity.platform,
               title: Text(i, style: Theme
                   .of(context)
                   .textTheme
                   .subtitle1,),
-              value: changedChecks[index],
+              value: changedChecks[i],
               onChanged: (bool value) {
                 setState(() {
-                  changedChecks[index] = value;
+                  changedChecks[i] = value;
+                  print(changedChecks[i]);
+                  print(i);
                 });
               }),
         );
-        ++index;
       }
     }
 
@@ -116,27 +115,33 @@ class _AddState extends State<BadgeInfo> {
                       ]
                   ),
                   SizedBox(height: 30.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Description', style: Theme
-                          .of(context)
-                          .textTheme
-                          .headline2,),
-                    ],
-                  ),
+                  Row(children: <Widget>[
+                    new Flexible(
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text('Description', style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline2,),
+                        ],
+                      ),
+                    ),
+                  ]),
                   SizedBox(height: 10.0),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(badge.description, style: Theme
-                            .of(context)
-                            .textTheme
-                            .subtitle1,),
-                      ]
-                  ),
+                  Row(children: <Widget>[
+                    new Flexible(
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text(badge.description, style: Theme
+                              .of(context)
+                              .textTheme
+                              .subtitle1,),
+                        ],
+                      ),
+                    ),
+                  ]),
                   SizedBox(height: 30.0),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
