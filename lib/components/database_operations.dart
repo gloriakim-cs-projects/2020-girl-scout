@@ -88,33 +88,40 @@ class GirlScoutDatabase {
     Hive.registerAdapter(MemberAdapter());
     Hive.registerAdapter(gradeEnumAdapter());
 
-    ///*
     await Hive.openBox('members');
     await Hive.openBox('badgeTags');
     await Hive.openBox('grades');
     await Hive.openBox('badges');
 
-    await db.loadMembers();
-    print('finished loading members');
-    await db.loadBadges();
-    print('finished loading badges');
-
-    // */
-    print('adding grades');
-    var gradeBox = Hive.box('grades');
-    var badgeBox = Hive.box('badges');
+    /*
+    var gradeBox = Hive.openBox('grades');
     var memberBox = Hive.box('members');
+    var badgeBox = Hive.box('badges');
+    await badgeBox.clear();
+    await memberBox.clear();
+    await gradeBox.clear();
+    */
 
-    //await badgeBox.clear();
-    //await memberBox.clear();
-    //await gradeBox.clear();
+    print('loading members');
+    await db.loadMembers();
+    print('loading badges');
+    await db.loadBadges();
+    print('loading grades');
+    await loadGrades();
 
     imageCache.clear();
+
+  }
+
+  Future<void> loadGrades() async {
+    var gradeBox = Hive.box('grades');
+
     if (gradeBox.isEmpty) {
       var memberBox = Hive.box('members');
       var badgeBox = Hive.box('badges');
-      var memberHiveList = HiveList(memberBox);
-      var badgeHiveList = HiveList(badgeBox);
+
+      var memberHiveList = HiveList(memberBox); // HiveList to initialize grade's members
+      var badgeHiveList = HiveList(badgeBox); // HiveList to initialize grade's badges
 
       gradeBox.put('Daisy', Grade(gradeEnum.DAISY, memberHiveList, badgeHiveList));
       gradeBox.put('Brownie', Grade(gradeEnum.BROWNIE, memberHiveList, badgeHiveList));
@@ -123,7 +130,6 @@ class GirlScoutDatabase {
       gradeBox.put('Senior', Grade(gradeEnum.SENIOR, memberHiveList, badgeHiveList));
       gradeBox.put('Ambassador', Grade(gradeEnum.AMBASSADOR, memberHiveList, badgeHiveList));
     }
-
   }
 
   Future<void> loadMembers() async{
@@ -149,16 +155,20 @@ class GirlScoutDatabase {
     print('adding member');
       var memberBox = Hive.box('members'); //open boxes
       var gradeBox = Hive.box('grades');
+      var badgeTagBox = Hive.box('badgeTags');
 
       var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
       print(gradeBox.get(grade));
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
+
+      var badgeTagHiveList = HiveList(badgeTagBox); // HiveList to initialize member's BadgeTags
+
       var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
-      Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
+      Member member = Member(name, gradeLink, team, date, photoPath, badgeTagHiveList); // create member object based on data
       memberBox.put(name, member); // add member to db
 
       Grade gradeObj = gradeBox.get(grade); // get grade from db
-      gradeObj.members.add(member); // add member to grades
+      gradeObj.members.add(member); // add member to grade
       /*
     }
     catch (e) {
@@ -189,20 +199,7 @@ class GirlScoutDatabase {
   }
 
   Future<void> deleteMember(String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) async{
-    try {
-      var memberBox = Hive.box('members'); //open boxes
-      var gradeBox = Hive.box('grades');
-
-      var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
-      gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
-      var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
-      Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
-      memberBox.add(member); // add member to db
-    }
-    catch (e) {
-      print("Add member failed");
-      return;
-    }
+    return;
   }
 
   Future<void> loadBadges() async {
@@ -224,14 +221,20 @@ class GirlScoutDatabase {
     try {
       var badgeBox = Hive.box('badges'); //open boxes
       var gradeBox = Hive.box('grades');
+      var badgeTagBox = Hive.box('badgeTags');
 
       var gradeLink = HiveList(gradeBox); // create a hive list of grades
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
-      Badge badge = Badge(name, description, gradeLink, requirements, photoLocation); // create member object based on data
+
+      var badgeTagLink = HiveList(badgeTagBox); // HiveList to initialize badge's BadgeTags
+
+      Badge badge = Badge(name, description, gradeLink, requirements, photoLocation, badgeTagLink); // create member object based on data
       badgeBox.add(badge); // add member to db
 
       Grade gradeObj = gradeBox.get(grade); // get grade from db
       gradeObj.badges.add(badge); // add member to grades
+
+
     }
     catch (e) {
       print("Add member failed");
@@ -240,21 +243,29 @@ class GirlScoutDatabase {
   }
 
 
-  Future<void> addBadgeTag (String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) async{
+  Future<void> addBadgeTag (Member member, Badge badge) async{
     //try {
     print('adding member');
     var memberBox = Hive.box('members'); //open boxes
-    var gradeBox = Hive.box('grades');
+    var badgeBox = Hive.box('badges');
+    var badgeTagBox = Hive.box('badgeTags');
 
-    var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
-    print(gradeBox.get(grade));
-    gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
-    var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
-    Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
-    memberBox.put(name, member); // add member to db
+    Map<String,String> requirementsMet;
 
-    Grade gradeObj = gradeBox.get(grade); // get grade from db
-    gradeObj.members.add(member); // add member to grades
+    var badgeLink = HiveList(badgeBox); // create a hive list to hold 1 badge
+    badgeLink.add(badge); // link badge to badgeTag
+    var memberLink = HiveList(memberBox); // create a hive list to hold 1 member
+    badgeLink.add(member); // link member to badgeTag
+
+    for (var i in badge.requirements) { // for each badge requirement
+      requirementsMet[i] = "No"; // mark incomplete
+    }
+
+    BadgeTag badgeTag = BadgeTag(badgeLink, memberLink, requirementsMet); // create badgeTag
+    badgeTagBox.add(badgeTag); // add badgeTag to db
+
+    badge.badgeTags.add(badgeTag); // link badgeTag to badge
+    member.badgeTags.add(badgeTag); // link badgeTag to member
     /*
     }
     catch (e) {
@@ -274,14 +285,14 @@ class GirlScoutDatabase {
     var gradeBox = Hive.box('grades');
 
     Member member = getMember(name); //get member
-    HiveList memberBadges = member.badgeTags; // get member's grade
+    HiveList memberBadges = member.badgeTags; // get member's badges
     print(memberBadges);
-    if (memberBadges != null) {
+    if (memberBadges != null) { // if member has badges, return them
       print('returning member\'s badges');
       return memberBadges.toList();
     }
     print('member has no badges');
-    return null;
+    return null; // return null if no badges
 
     /*
     }

@@ -27,7 +27,7 @@ class Member extends HiveObject{
   @HiveField(5)
   HiveList badgeTags;
 
-  Member(this.name, this.grade, this.team, this.birthday, this.photoPath);
+  Member(this.name, this.grade, this.team, this.birthday, this.photoPath, this.badgeTags);
 }
 
 @HiveType(typeId: 1)
@@ -50,7 +50,7 @@ class BadgeTag extends HiveObject{
   @HiveField(5)
   Map<String,String> requirementsMet;
 
-  BadgeTag();
+  BadgeTag(this.badge, this.member, this.requirementsMet, {this.status = 'Incomplete', this.completedRequirements = 'no'});
   BadgeTag.date(this.dateAcquired);
 }
 
@@ -80,7 +80,7 @@ class Badge extends HiveObject{
   @HiveField(7)
   HiveList badgeTags;
 
-  Badge(this.name, this.description, this.grade, this.requirements, this.photoPath);
+  Badge(this.name, this.description, this.grade, this.requirements, this.photoPath, this.badgeTags);
 }
 
 @HiveType(typeId: 3)
