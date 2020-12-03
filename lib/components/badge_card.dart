@@ -8,7 +8,7 @@ import 'package:girl_scout_simple/models.dart';
 class BadgeCard extends StatelessWidget {
 
   BadgeCard({this.grade, this.name, this.description, this.requirements,
-    this.quantity, this.photoLocation});
+    this.quantity, this.photoLocation, this.selectable = false});
 
   final gradeEnum grade;
   final String name;
@@ -16,7 +16,7 @@ class BadgeCard extends StatelessWidget {
   final List<String> requirements;
   final int quantity;
   final String photoLocation; //idk if we need this
-
+  final bool selectable;
 
 
   @override
@@ -87,6 +87,10 @@ class BadgeCard extends StatelessWidget {
             ),
             onTap: () {
               //TODO create funtion so that if state is triggered, bring up edit page with populated information for tapped scout
+              if (selectable) {
+                  //add badge to scout list
+
+                }
             }
         ),
       ),

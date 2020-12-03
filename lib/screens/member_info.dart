@@ -115,10 +115,17 @@ class _AddState extends State<MemberInfo> {
                 title: 'Scout\'s Badges',
                 subtitle: 'All',
                 addIcon: true,
+                data: widget.data,
                 cardChild:
-                ListView(
-                    shrinkWrap: true,
-                    children: getScoutBadgesWidgetList(name) //TODO add an overloaded function to get scouts badges and progress
+                Column(
+                  children: <Widget>[
+                    ListView(
+                        shrinkWrap: true,
+                        children: getScoutBadgesWidgetList(
+                            name) //TODO add an overloaded function to get scouts badges and progress
+
+                    )
+                  ],
                 ),
               ),
             ]

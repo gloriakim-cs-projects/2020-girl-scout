@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'package:girl_scout_simple/screens/add.dart';
 import 'package:girl_scout_simple/screens/addBadge.dart';
+import 'package:girl_scout_simple/screens/badgeList.dart';
+import 'package:girl_scout_simple/components/globals.dart';
 
 class ReusableCard extends StatelessWidget {
 
-  ReusableCard({this.parentPage, this.title, this.subtitle, @required this.addIcon, @required this.cardChild});
+  ReusableCard({this.parentPage, this.title, this.subtitle, @required this.addIcon, @required this.cardChild, this.data});
   final String parentPage;
   final String title;
   final String subtitle;
   final Widget cardChild;
   final bool addIcon;
+  final Data data;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,7 @@ class ReusableCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            parentPage == 'Setting' ? ExcludeTitle() : IncludeTitle(title: title, subtitle: subtitle, addIcon: addIcon),
+            parentPage == 'Setting' ? ExcludeTitle() : IncludeTitle(title: title, subtitle: subtitle, addIcon: addIcon, data: data),
             //show only if subtitle is not null ('')
             subtitle == '' ? SizedBox(height: 0.0) : SizedBox(height: 10.0),
             subtitle == '' ? SizedBox() : Text(subtitle, style: Theme.of(context).textTheme.bodyText2),
@@ -58,10 +61,11 @@ class ExcludeTitle extends StatelessWidget {
 
 class IncludeTitle extends StatelessWidget {
 
-  IncludeTitle({@required this.title, @required this.subtitle, @required this.addIcon});
+  IncludeTitle({@required this.title, @required this.subtitle, @required this.addIcon, this.data});
   final String title;
   final String subtitle;
   final bool addIcon;
+  final Data data;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +84,7 @@ class IncludeTitle extends StatelessWidget {
             //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
             (title == 'Badges') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new AddBadge(title: 'Add Badge'))) :
             (title == 'Patches') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new AddBadge(title: 'Add Patch'))) :
+            //(title == 'Scout\'s Badges') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new BadgeListPage(type: 0, data: data))) :
             Navigator.push(context, MaterialPageRoute(builder: (context) =>  new Add(title: 'Add Member')));
             //Navigator.pop(context, "hi");
           }, child: Icon(Icons.add_circle), ),

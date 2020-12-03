@@ -17,9 +17,9 @@ import 'package:girl_scout_simple/models.dart';
 
 class BadgeListPage extends StatefulWidget {
   //TODO: complete parameters
-  BadgeListPage({@required this.type});
+  BadgeListPage({@required this.type, @required this.data});
   final int type; //0 for badges, 1 for patches
-
+  final Data data;
   static String id = '/MemberInfo';
   @override
   _AddState createState() => _AddState();
@@ -28,11 +28,15 @@ class BadgeListPage extends StatefulWidget {
 class _AddState extends State<BadgeListPage> {
 
   int type;
+  String name;
+  gradeEnum grade;
 
   @override
   Widget build(BuildContext context) {
 
     type = widget.type;
+    name = widget.data.name;
+    grade = widget.data.grade;
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -52,12 +56,14 @@ class _AddState extends State<BadgeListPage> {
         backgroundColor: kDarkGreyColor,),
       body: SingleChildScrollView(
         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               //TODO this is where the badge cards will be called
               ListView(
-                children: [
-                  //METHOD for badges
-                ],
+                  shrinkWrap: true,
+                children:
+                  getBadgeWidgetList(grade)
               )
             ]
         ),

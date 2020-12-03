@@ -105,9 +105,9 @@ class GirlScoutDatabase {
     var badgeBox = Hive.box('badges');
     var memberBox = Hive.box('members');
 
-    await badgeBox.clear();
-    await memberBox.clear();
-    await gradeBox.clear();
+    //await badgeBox.clear();
+    //await memberBox.clear();
+    //await gradeBox.clear();
 
     imageCache.clear();
     if (gradeBox.isEmpty) {

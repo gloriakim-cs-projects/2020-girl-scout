@@ -89,21 +89,27 @@ int getBadgeNum(String grade, String name) {
 
   switch (grade)
   {
+    case 'DAISY':
     case 'Daisy':
       g  = gradeEnum.DAISY;
       break;
+    case 'BROWNIE':
     case 'Brownie':
       g  = gradeEnum.BROWNIE;
       break;
+    case 'JUNIOR':
     case 'Junior':
       g  = gradeEnum.JUNIOR;
       break;
+    case 'CADETTE':
     case 'Cadette':
       g  = gradeEnum.CADETTE;
       break;
+    case 'SENIOR':
     case 'Senior':
       g  = gradeEnum.SENIOR;
       break;
+    case 'AMBASSADOR':
     case 'Ambassador':
       g = gradeEnum.AMBASSADOR;
       break;
