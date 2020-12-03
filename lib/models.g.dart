@@ -86,7 +86,8 @@ class MemberAdapter extends TypeAdapter<Member> {
       fields[2] as String,
       fields[3] as DateTime,
       fields[4] as String,
-    )..badgeTags = (fields[5] as HiveList)?.castHiveList();
+      (fields[5] as HiveList)?.castHiveList(),
+    );
   }
 
   @override
@@ -128,13 +129,13 @@ class BadgeTagAdapter extends TypeAdapter<BadgeTag> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return BadgeTag()
-      ..status = fields[0] as String
-      ..completedRequirements = fields[1] as String
-      ..dateAcquired = fields[2] as DateTime
-      ..badge = (fields[3] as HiveList)?.castHiveList()
-      ..member = (fields[4] as HiveList)?.castHiveList()
-      ..requirementsMet = (fields[5] as Map)?.cast<String, String>();
+    return BadgeTag(
+      (fields[3] as HiveList)?.castHiveList(),
+      (fields[4] as HiveList)?.castHiveList(),
+      (fields[5] as Map)?.cast<String, String>(),
+      status: fields[0] as String,
+      completedRequirements: fields[1] as String,
+    )..dateAcquired = fields[2] as DateTime;
   }
 
   @override
@@ -182,10 +183,10 @@ class BadgeAdapter extends TypeAdapter<Badge> {
       (fields[3] as HiveList)?.castHiveList(),
       (fields[5] as List)?.cast<String>(),
       fields[6] as String,
+      (fields[7] as HiveList)?.castHiveList(),
     )
       ..subtitle = fields[1] as String
-      ..type = fields[4] as String
-      ..badgeTags = (fields[7] as HiveList)?.castHiveList();
+      ..type = fields[4] as String;
   }
 
   @override
