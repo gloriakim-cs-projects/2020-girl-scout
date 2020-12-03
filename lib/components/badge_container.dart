@@ -184,3 +184,4 @@ List<Widget> getScoutUncompletedBadgesWidgetList(String name) {
   }
   return returnList;
 }
+

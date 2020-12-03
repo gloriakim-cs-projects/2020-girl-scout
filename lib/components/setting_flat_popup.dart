@@ -17,7 +17,7 @@ void AlertPopup(BuildContext context) async {
               onPressed: (){
                 Navigator.pop(context, 'yes');
                 GirlScoutDatabase db;
-                db.deleteAllMembers();
+                //db.deleteAllMembers();
               },
             ),
             FlatButton(
