@@ -84,9 +84,8 @@ class IncludeTitle extends StatelessWidget {
             //TODO: Figure out why this is not working >>>>>> Navigator.pushNamed(context, Add.id);
             (title == 'Badges') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new AddBadge(title: 'Add Badge'))) :
             (title == 'Patches') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new AddBadge(title: 'Add Patch'))) :
-            //(title == 'Scout\'s Badges') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new BadgeListPage(type: 0, data: data))) :
+            (title == 'Scout\'s Badges') ? Navigator.push(context, MaterialPageRoute(builder: (context) =>  new BadgeListPage(type: 0, data: data))) :
             Navigator.push(context, MaterialPageRoute(builder: (context) =>  new Add(title: 'Add Member')));
-            //Navigator.pop(context, "hi");
           }, child: Icon(Icons.add_circle), ),
         ],
       );

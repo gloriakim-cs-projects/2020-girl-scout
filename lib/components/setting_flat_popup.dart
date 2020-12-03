@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:girl_scout_simple/components/database_operations.dart';
+import 'package:girl_scout_simple/components/globals.dart';
 
 void AlertPopup(BuildContext context) async {
   String result = await showDialog(
@@ -14,10 +15,11 @@ void AlertPopup(BuildContext context) async {
           actions: <Widget>[
             FlatButton(
               child: Text('Yes'),
-              onPressed: (){
+              onPressed: ()async {
+
+                db.deleteAllData();
+
                 Navigator.pop(context, 'yes');
-                GirlScoutDatabase db;
-                //db.deleteAllMembers();
               },
             ),
             FlatButton(

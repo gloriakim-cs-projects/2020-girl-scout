@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:girl_scout_simple/components/database_operations.dart';
 import 'package:girl_scout_simple/components/badge_card.dart';
 import 'package:girl_scout_simple/components/globals.dart' as globals;
+import 'package:girl_scout_simple/components/globals.dart';
 import 'package:girl_scout_simple/models.dart';
 
 
@@ -92,42 +93,8 @@ int getBadgeNum(String grade, String name) {
   return 0;
 }
 
-/*
-void deleteMember(gradeEnum grade, BadgeData data)
-{
-  GirlScoutDatabase db = GirlScoutDatabase();
-
-  switch (grade)
-  {
-    case gradeEnum.DAISY:
-      globals.daisyListBadge.remove(data);
-      break;
-    case gradeEnum.BROWNIE:
-      globals.brownieListBadge.remove(data);
-      break;
-    case gradeEnum.JUNIOR:
-      globals.juniorListBadge.remove(data);
-      break;
-    case gradeEnum.CADETTE:
-      globals.cadetteListBadge.remove(data);
-      break;
-    case gradeEnum.SENIOR:
-      globals.seniorListBadge.remove(data);
-      break;
-    case gradeEnum.AMBASSADOR:
-      globals.ambassadorListBadge.remove(data);
-      break;
-  }
-  globals.allListBadge.remove(data);
-  final dir = Directory(data.photoLocation);
-  dir.delete(recursive:true); //maybe change to false
-  //db.writeBadgeList(grade); //HIVE
-}
-
- */
-
-//this function also add the add member card at the end of the list.
-List<Widget> getBadgeWidgetList(gradeEnum grade) {
+//this function also add the add member card at the end of the list. selectable should mainly be false if you want it to bring up the infromation
+List<Widget> getBadgeWidgetList(gradeEnum grade, bool selectable, {Data data}) {
   var returnList = new List<Widget>();
   var gradeList;
 
@@ -135,14 +102,17 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
 
   for (var i in gradeList) {
     returnList.add(new Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           new BadgeCard(grade: i.grade,
               name: i.name,
+              selectable: selectable,
+              memberData: data,
               description: i.description,
               requirements: i.requirements,
               quantity: 0,//getBadgeNum(describeEnum(i.grade), i.name),
               photoLocation: i.photoLocation),
+
         ]));
   }
   return returnList;

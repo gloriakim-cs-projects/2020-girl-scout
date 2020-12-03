@@ -21,63 +21,40 @@ class GirlScoutDatabase {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
-/*
-  ///MEMBERS
-  Future<File> get _daisyMemberFile async {
-    final path = await _localPath;
-    print(path);
-    return File('$path/daisyMembers.txt');
-  }
-  Future<File> get _brownieMemberFile async {
-    final path = await _localPath;
-    print(path);
-    return File('$path/brownieMembers.txt');
-  }
-  Future<File> get _juniorMemberFile async {
-    final path = await _localPath;
-    return File('$path/juniorMembers.txt');
-  }
-  Future<File> get _cadetteMemberFile async {
-    final path = await _localPath;
-    return File('$path/cadetteMembers.txt');
-  }
-  Future<File> get _seniorMemberFile async {
-    final path = await _localPath;
-    return File('$path/seniorMembers.txt');
-  }
-  Future<File> get _ambassadorMemberFile async {
-    final path = await _localPath;
-    return File('$path/ambassadorMembers.txt');
-  }
 
-  ///BADGES
-  Future<File> get _daisyBadgeFile async {
-    final path = await _localPath;
-    print(path);
-    return File('$path/daisyBadges.txt');
-  }
-  Future<File> get _brownieBadgeFile async {
-    final path = await _localPath;
-    print(path);
-    return File('$path/brownieBadges.txt');
-  }
-  Future<File> get _juniorBadgeFile async {
-    final path = await _localPath;
-    return File('$path/juniorBadges.txt');
-  }
-  Future<File> get _cadetteBadgeFile async {
-    final path = await _localPath;
-    return File('$path/cadetteBadges.txt');
-  }
-  Future<File> get _seniorBadgeFile async {
-    final path = await _localPath;
-    return File('$path/seniorBadges.txt');
-  }
-  Future<File> get _ambassadorBadgeFile async {
-    final path = await _localPath;
-    return File('$path/ambassadorBadges.txt');
-  }
-*/
+  Future<void> deleteAllData() async{
+  var memberBox = Hive.box('members');
+  var badgeBox = Hive.box('badges');
+  await badgeBox.clear();
+  await memberBox.clear();
+
+  allList.clear();
+  daisyList.clear();
+  brownieList.clear();
+  juniorList.clear();
+  cadetteList.clear();
+  seniorList.clear();
+  ambassadorList.clear();
+
+  allListBadge.clear();
+  daisyListBadge.clear();
+  brownieListBadge.clear();
+  juniorListBadge.clear();
+  cadetteListBadge.clear();
+  seniorListBadge.clear();
+  ambassadorListBadge.clear();
+
+  allListPatch.clear();
+  daisyListPatch.clear();
+  brownieListPatch.clear();
+  juniorListPatch.clear();
+  cadetteListPatch.clear();
+  seniorListPatch.clear();
+  ambassadorListPatch.clear();
+
+  //cant delete other two boxes
+}
+
   Future<void> initDB() async{
     WidgetsFlutterBinding.ensureInitialized();
     final appDBDirectory = await getApplicationDocumentsDirectory();
@@ -180,6 +157,23 @@ class GirlScoutDatabase {
        */
   }
 
+  Badge getBadge(String name)
+  {
+    print('getting badge');
+    var badgeBox = Hive.box('badges'); //open member box
+    Badge i;
+    for (i in badgeBox.values) {
+      if (i.name == name) break;
+    }
+
+
+
+    //Badge badge = badgeBox.get('cyc'); // get member
+    return i;
+
+  }
+
+
   Member getMember (String name) {
     //try {
     print('getting member');
@@ -245,7 +239,7 @@ class GirlScoutDatabase {
 
   Future<void> addBadgeTag (Member member, Badge badge) async{
     //try {
-    print('adding member');
+    print('adding member badge');
     var memberBox = Hive.box('members'); //open boxes
     var badgeBox = Hive.box('badges');
     var badgeTagBox = Hive.box('badgeTags');
@@ -254,16 +248,19 @@ class GirlScoutDatabase {
 
     var badgeLink = HiveList(badgeBox); // create a hive list to hold 1 badge
     badgeLink.add(badge); // link badge to badgeTag
-    var memberLink = HiveList(memberBox); // create a hive list to hold 1 member
-    badgeLink.add(member); // link member to badgeTag
 
-    for (var i in badge.requirements) { // for each badge requirement
-      requirementsMet[i] = "No"; // mark incomplete
-    }
+    var memberLink = HiveList(memberBox); // create a hive list to hold 1 member
+    memberLink.add(member); // link member to badgeTag
+
+      for (var i in badge.requirements) { // for each badge requirement
+        if (i != "") requirementsMet[i] = "No"; // mark incomplete
+      }
+
 
     BadgeTag badgeTag = BadgeTag(badgeLink, memberLink, requirementsMet); // create badgeTag
-    badgeTagBox.add(badgeTag); // add badgeTag to db
 
+
+    badgeTagBox.add(badgeTag); // add badgeTag to db
     badge.badgeTags.add(badgeTag); // link badgeTag to badge
     member.badgeTags.add(badgeTag); // link badgeTag to member
     /*
@@ -304,249 +301,4 @@ class GirlScoutDatabase {
 
        */
   }
-
-  /*
-  Future<File> writeMemberList(gradeEnum grade) async {
-    String temp = '';
-    switch (grade) {
-      case gradeEnum.DAISY:
-        final file = await _daisyMemberFile;
-        for (var i in globals.daisyList) {
-          temp += i.name;
-          temp += ';';
-          temp += i.team;
-          temp += ';';
-          temp += i.birthMonth;
-          temp += ';';
-          temp += i.birthDay.toString();
-          temp += ';';
-          temp += i.birthYear.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.BROWNIE:
-
-        final file = await _brownieMemberFile;
-        for (var i in globals.brownieList) {
-          temp += i.name;
-          temp += ';';
-          temp += i.team;
-          temp += ';';
-          temp += i.birthMonth;
-          temp += ';';
-          temp += i.birthDay.toString();
-          temp += ';';
-          temp += i.birthYear.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.JUNIOR:
-        final file = await _juniorMemberFile;
-        for (var i in globals.juniorList) {
-          temp += i.name;
-          temp += ';';
-          temp += i.team;
-          temp += ';';
-          temp += i.birthMonth;
-          temp += ';';
-          temp += i.birthDay.toString();
-          temp += ';';
-          temp += i.birthYear.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.CADETTE:
-        final file = await _cadetteMemberFile;
-        for (var i in globals.cadetteList) {
-          temp += i.name;
-          temp += ';';
-          temp += i.team;
-          temp += ';';
-          temp += i.birthMonth;
-          temp += ';';
-          temp += i.birthDay.toString();
-          temp += ';';
-          temp += i.birthYear.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.SENIOR:
-        final file = await _seniorMemberFile;
-        for (var i in globals.seniorList) {
-          temp += i.name;
-          temp += ';';
-          temp += i.team;
-          temp += ';';
-          temp += i.birthMonth;
-          temp += ';';
-          temp += i.birthDay.toString();
-          temp += ';';
-          temp += i.birthYear.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.AMBASSADOR:
-        final file = await _ambassadorMemberFile;
-        for (var i in globals.ambassadorList) {
-          temp += i.name;
-          temp += ';';
-          temp += i.team;
-          temp += ';';
-          temp += i.birthMonth;
-          temp += ';';
-          temp += i.birthDay.toString();
-          temp += ';';
-          temp += i.birthYear.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-    }
-  }
-
-  //TODO condense code --- only if we stick witht he file system.
-  Future<File> writeBadgeList(gradeEnum grade) async {
-    String temp = '';
-    switch (grade) {
-      case gradeEnum.DAISY:
-        final file = await _daisyBadgeFile;
-        for (var i in globals.daisyListBadge) {
-          temp += i.name;
-          temp += ';';
-          temp += i.description;
-          temp += ';';
-          for (var j in i.requirements) {
-            temp += j;
-            temp += ':';
-          }
-          if (temp != null && temp.length > 0) {
-            temp = temp.substring(0, temp.length - 1);
-          }
-          temp += ';';
-          temp += i.quantity.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.BROWNIE:
-
-        final file = await _brownieBadgeFile;
-        for (var i in globals.brownieListBadge) {
-          temp += i.name;
-          temp += ';';
-          temp += i.description;
-          temp += ';';
-          for (var j in i.requirements) {
-            temp += j;
-            temp += ':';
-          }
-          if (temp != null && temp.length > 0) {
-            temp = temp.substring(0, temp.length - 1);
-          }
-          temp += ';';
-          temp += i.quantity.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.JUNIOR:
-        final file = await _juniorBadgeFile;
-        for (var i in globals.juniorListBadge) {
-          temp += i.name;
-          temp += ';';
-          temp += i.description;
-          temp += ';';
-          for (var j in i.requirements) {
-            temp += j;
-            temp += ':';
-          }
-          if (temp != null && temp.length > 0) {
-            temp = temp.substring(0, temp.length - 1);
-          }
-          temp += ';';
-          temp += i.quantity.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.CADETTE:
-        final file = await _cadetteBadgeFile;
-        for (var i in globals.cadetteListBadge) {
-          temp += i.name;
-          temp += ';';
-          temp += i.description;
-          temp += ';';
-          for (var j in i.requirements) {
-            temp += j;
-            temp += ':';
-          }
-          if (temp != null && temp.length > 0) {
-            temp = temp.substring(0, temp.length - 1);
-          }
-          temp += ';';
-          temp += i.quantity.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.SENIOR:
-        final file = await _seniorBadgeFile;
-        for (var i in globals.seniorListBadge) {
-          temp += i.name;
-          temp += ';';
-          temp += i.description;
-          temp += ';';
-          for (var j in i.requirements) {
-            temp += j;
-            temp += ':';
-          }
-          if (temp != null && temp.length > 0) {
-            temp = temp.substring(0, temp.length - 1);
-          }
-          temp += ';';
-          temp += i.quantity.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-      case gradeEnum.AMBASSADOR:
-        final file = await _ambassadorBadgeFile;
-        for (var i in globals.ambassadorListBadge) {
-          temp += i.name;
-          temp += ';';
-          temp += i.description;
-          temp += ';';
-          for (var j in i.requirements) {
-            temp += j;
-            temp += ':';
-          }
-          if (temp != null && temp.length > 0) {
-            temp = temp.substring(0, temp.length - 1);
-          }
-          temp += ';';
-          temp += i.quantity.toString();
-          temp += ';';
-          temp += i.photoLocation;
-          temp += '\n';
-        }
-        return file.writeAsString(temp);
-    }
-  }
-  */
 }

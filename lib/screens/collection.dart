@@ -77,7 +77,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                             shrinkWrap: true,
-                            children: getBadgeWidgetList(gradeEnum.ALL)
+                            children: getBadgeWidgetList(gradeEnum.ALL, false)
                           ),
                         ],
                       ),
@@ -89,7 +89,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.ALL)
+                          children: getBadgeWidgetList(gradeEnum.ALL, false)
                       ),
                     ),
                   ]
@@ -102,7 +102,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                               shrinkWrap: true,
-                              children: getBadgeWidgetList(gradeEnum.DAISY)
+                              children: getBadgeWidgetList(gradeEnum.DAISY, false)
                           ),
                         ],
                       ),
@@ -114,7 +114,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.DAISY)
+                          children: getBadgeWidgetList(gradeEnum.DAISY, false)
                       ),
                     ),
                   ]
@@ -127,7 +127,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                               shrinkWrap: true,
-                              children: getBadgeWidgetList(gradeEnum.BROWNIE)
+                              children: getBadgeWidgetList(gradeEnum.BROWNIE, false)
                           ),
                         ],
                       ),
@@ -139,7 +139,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.BROWNIE)
+                          children: getBadgeWidgetList(gradeEnum.BROWNIE, false)
                       ),
                     ),
                   ]
@@ -152,7 +152,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                               shrinkWrap: true,
-                              children: getBadgeWidgetList(gradeEnum.JUNIOR)
+                              children: getBadgeWidgetList(gradeEnum.JUNIOR, false)
                           ),
                         ],
                       ),
@@ -164,7 +164,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.JUNIOR)
+                          children: getBadgeWidgetList(gradeEnum.JUNIOR, false)
                       ),
                     ),
                   ]
@@ -177,7 +177,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                               shrinkWrap: true,
-                              children: getBadgeWidgetList(gradeEnum.CADETTE)
+                              children: getBadgeWidgetList(gradeEnum.CADETTE, false)
                           ),
                         ],
                       ),
@@ -189,7 +189,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.CADETTE)
+                          children: getBadgeWidgetList(gradeEnum.CADETTE, false)
                       ),
                     ),
                   ]
@@ -202,7 +202,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                               shrinkWrap: true,
-                              children: getBadgeWidgetList(gradeEnum.SENIOR)
+                              children: getBadgeWidgetList(gradeEnum.SENIOR, false)
                           ),
                         ],
                       ),
@@ -214,7 +214,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.SENIOR)
+                          children: getBadgeWidgetList(gradeEnum.SENIOR, false)
                       ),
                     ),
                   ]
@@ -227,7 +227,7 @@ class _CollectionState extends State<Collection> {
                         children: <Widget>[
                           ListView(
                               shrinkWrap: true,
-                              children: getBadgeWidgetList(gradeEnum.AMBASSADOR)
+                              children: getBadgeWidgetList(gradeEnum.AMBASSADOR, false)
                           ),
                         ],
                       ),
@@ -239,7 +239,7 @@ class _CollectionState extends State<Collection> {
                       cardChild:
                       ListView(
                           shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.AMBASSADOR)
+                          children: getBadgeWidgetList(gradeEnum.AMBASSADOR, false)
                       ),
                     ),
                   ]

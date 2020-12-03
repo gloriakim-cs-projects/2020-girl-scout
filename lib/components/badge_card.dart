@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:girl_scout_simple/components/constants.dart';
 import 'globals.dart';
 import 'package:girl_scout_simple/models.dart';
+import 'package:girl_scout_simple/components/globals.dart';
+import 'package:girl_scout_simple/screens/badge_info.dart';
 
 class BadgeCard extends StatelessWidget {
 
   BadgeCard({this.grade, this.name, this.description, this.requirements,
-    this.quantity, this.photoLocation, this.selectable = false});
+    this.quantity, this.photoLocation, this.selectable = false, this.memberData});
 
   final gradeEnum grade;
   final String name;
@@ -17,7 +19,7 @@ class BadgeCard extends StatelessWidget {
   final int quantity;
   final String photoLocation; //idk if we need this
   final bool selectable;
-
+  final Data memberData;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +91,20 @@ class BadgeCard extends StatelessWidget {
               //TODO create funtion so that if state is triggered, bring up edit page with populated information for tapped scout
               if (selectable) {
                   //add badge to scout list
+                if (memberData == null) {
+                  print(
+                      'YOU NEED TO PASS A  MEMBER IF YOU MAKE THE BADGECARD SELECTABLE!');
+                  return;
+                }
+                Member member = db.getMember(memberData.name); //get member
+                Badge badge = db.getBadge(name);
 
+                db.addBadgeTag(member, badge);
+                Navigator.pop(context, true);
+                }
+              else {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => new BadgeInfo(badge: db.getBadge(name))));
                 }
             }
         ),

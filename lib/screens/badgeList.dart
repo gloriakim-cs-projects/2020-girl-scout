@@ -63,7 +63,7 @@ class _AddState extends State<BadgeListPage> {
               ListView(
                   shrinkWrap: true,
                 children:
-                  getBadgeWidgetList(grade)
+                  getBadgeWidgetList(grade, true, data: widget.data)
               )
             ]
         ),
