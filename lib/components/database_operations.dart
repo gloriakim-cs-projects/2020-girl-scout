@@ -132,7 +132,9 @@ class GirlScoutDatabase {
 
       for (var i in memberBox.values)
         {
+          print(i.name);
           Grade grade = i.grade.first;
+          print(describeEnum(grade.name));
           addScoutToList(describeEnum(grade.name), i.team, i.name, monthNames[i.birthday.month], i.birthday.day, i.birthday.year, i.photoPath);
         }
     }

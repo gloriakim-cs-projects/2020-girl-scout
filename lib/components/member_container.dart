@@ -22,21 +22,27 @@ void addScoutToList(String grade, String team, String name, String birthMonth, i
   switch (grade)
       {
     case 'Daisy':
+    case 'DAISY':
       g  = gradeEnum.DAISY;
       break;
     case 'Brownie':
+    case 'BROWNIE':
       g  = gradeEnum.BROWNIE;
       break;
     case 'Junior':
+    case 'JUNIOR':
       g  = gradeEnum.JUNIOR;
       break;
     case 'Cadette':
+    case 'CADETTE':
       g  = gradeEnum.CADETTE;
       break;
     case 'Senior':
+    case 'SENIOR':
       g  = gradeEnum.SENIOR;
       break;
     case 'Ambassador':
+    case 'AMBASSADOR':
       g = gradeEnum.AMBASSADOR;
     break;
   }
