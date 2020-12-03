@@ -24,21 +24,27 @@ void addBadgeToList(String grade, String name, String description, List<String> 
   switch (grade)
   {
     case 'Daisy':
+    case 'DAISY':
       g  = gradeEnum.DAISY;
       break;
     case 'Brownie':
+    case 'BROWNIE':
       g  = gradeEnum.BROWNIE;
       break;
     case 'Junior':
+    case 'JUNIOR':
       g  = gradeEnum.JUNIOR;
       break;
     case 'Cadette':
+    case 'CADETTE':
       g  = gradeEnum.CADETTE;
       break;
     case 'Senior':
+    case 'SENIOR':
       g  = gradeEnum.SENIOR;
       break;
     case 'Ambassador':
+    case 'AMBASSADOR':
       g = gradeEnum.AMBASSADOR;
       break;
   }
@@ -167,11 +173,11 @@ List<Widget> getBadgeWidgetList(gradeEnum grade) {
 //this function also add the add member card at the end of the list.
 List<Widget> getScoutBadgesWidgetList(String name) {
   var returnList = new List<Widget>();
-  var memberBadgesadgesList = globals.db.getMemberBadges(name);
+  var memberBadgesList = globals.db.getMemberBadges(name);
 
-  if (memberBadgesadgesList != null) {
+  if (memberBadgesList != null) {
     print('creating member\'s badges widgets');
-    for (var i in memberBadgesadgesList) {
+    for (var i in memberBadgesList) {
       Grade badgeGrade = i.grade.first;
       returnList.add(new Row(
           mainAxisAlignment: MainAxisAlignment.start,

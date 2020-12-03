@@ -240,6 +240,32 @@ class GirlScoutDatabase {
   }
 
 
+  Future<void> addBadgeTag (String grade, String team, String name, String birthMonth, int birthDay, int birthYear, String photoPath) async{
+    //try {
+    print('adding member');
+    var memberBox = Hive.box('members'); //open boxes
+    var gradeBox = Hive.box('grades');
+
+    var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
+    print(gradeBox.get(grade));
+    gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
+    var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
+    Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
+    memberBox.put(name, member); // add member to db
+
+    Grade gradeObj = gradeBox.get(grade); // get grade from db
+    gradeObj.members.add(member); // add member to grades
+    /*
+    }
+    catch (e) {
+      print(e);
+      print("Add member failed");
+      return;
+    }
+
+       */
+  }
+
   List<dynamic> getMemberBadges (String name) {
     //try {
     print('getting member\'s badges');
