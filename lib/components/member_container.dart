@@ -17,35 +17,7 @@ void addScoutToList(String grade, String team, String name, String birthMonth, i
   if (name == '') return null;
   //all other variables should come from a list the user has to chose, meaning that there is no room for empty fields as all fields will be populated with the first choice.
 
-  gradeEnum g;
-
-  switch (grade)
-      {
-    case 'Daisy':
-    case 'DAISY':
-      g  = gradeEnum.DAISY;
-      break;
-    case 'Brownie':
-    case 'BROWNIE':
-      g  = gradeEnum.BROWNIE;
-      break;
-    case 'Junior':
-    case 'JUNIOR':
-      g  = gradeEnum.JUNIOR;
-      break;
-    case 'Cadette':
-    case 'CADETTE':
-      g  = gradeEnum.CADETTE;
-      break;
-    case 'Senior':
-    case 'SENIOR':
-      g  = gradeEnum.SENIOR;
-      break;
-    case 'Ambassador':
-    case 'AMBASSADOR':
-      g = gradeEnum.AMBASSADOR;
-    break;
-  }
+  gradeEnum g = globals.gradeStringtoEnum(grade);
 
   var newData = new Data(
     grade: g,
