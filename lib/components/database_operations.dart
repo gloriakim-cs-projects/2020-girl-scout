@@ -107,15 +107,21 @@ class GirlScoutDatabase {
 
     await badgeBox.clear();
     await memberBox.clear();
+    await gradeBox.clear();
 
     imageCache.clear();
     if (gradeBox.isEmpty) {
-      gradeBox.put('Daisy', Grade.name(gradeEnum.DAISY));
-      gradeBox.put('Brownie', Grade.name(gradeEnum.BROWNIE));
-      gradeBox.put('Junior', Grade.name(gradeEnum.JUNIOR));
-      gradeBox.put('Cadette', Grade.name(gradeEnum.CADETTE));
-      gradeBox.put('Senior', Grade.name(gradeEnum.SENIOR));
-      gradeBox.put('Ambassador', Grade.name(gradeEnum.AMBASSADOR));
+      var memberBox = Hive.box('members');
+      var badgeBox = Hive.box('badges');
+      var memberHiveList = HiveList(memberBox);
+      var badgeHiveList = HiveList(badgeBox);
+
+      gradeBox.put('Daisy', Grade(gradeEnum.DAISY, memberHiveList, badgeHiveList));
+      gradeBox.put('Brownie', Grade(gradeEnum.BROWNIE, memberHiveList, badgeHiveList));
+      gradeBox.put('Junior', Grade(gradeEnum.JUNIOR, memberHiveList, badgeHiveList));
+      gradeBox.put('Cadette', Grade(gradeEnum.CADETTE, memberHiveList, badgeHiveList));
+      gradeBox.put('Senior', Grade(gradeEnum.SENIOR, memberHiveList, badgeHiveList));
+      gradeBox.put('Ambassador', Grade(gradeEnum.AMBASSADOR, memberHiveList, badgeHiveList));
     }
 
   }
@@ -143,7 +149,7 @@ class GirlScoutDatabase {
       var gradeBox = Hive.box('grades');
 
       var gradeLink = HiveList(gradeBox); // create a hive list to hold 1 grade
-      print(gradeLink);
+      print(gradeBox.get(grade));
       gradeLink.add(gradeBox.get(grade)); // add the member's grade to the list
       var date = DateTime(birthYear, monthNums[birthMonth], birthDay); // create a datetime object from string inputs
       Member member = Member(name, gradeLink, team, date, photoPath); // create member object based on data
@@ -232,9 +238,9 @@ class GirlScoutDatabase {
   }
 
 
-  List<Badge> getMemberBadges (String name) {
+  List<dynamic> getMemberBadges (String name) {
     //try {
-    print('getting member\'s uncompleted badges');
+    print('getting member\'s badges');
 
     var badgeBox = Hive.box('badges');
     var gradeBox = Hive.box('grades');

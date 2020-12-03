@@ -94,7 +94,7 @@ class Grade extends HiveObject {
   @HiveField(2)
   HiveList badges;
 
-  Grade();
+  Grade(this.name, this.members, this.badges);
   Grade.name(this.name);
 }
 
