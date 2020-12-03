@@ -29,20 +29,34 @@ class _AddState extends State<BadgeInfo> {
 
   Badge badge;
 
+
   @override
   Widget build(BuildContext context) {
     badge = widget.badge;
     var requirementList = new List<Widget>();
+    var changedChecks = new List<bool>();
+    int index = 0;
+
     for (var i in badge.requirements) {
-      requirementList.add(new Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(i, style: Theme
-                .of(context)
-                .textTheme
-                .subtitle1,)
-          ]
-      ));
+      if (i != "") {
+        changedChecks.add(false);
+        print(changedChecks.length);
+        requirementList.add(
+          new CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.platform,
+              title: Text(i, style: Theme
+                  .of(context)
+                  .textTheme
+                  .subtitle1,),
+              value: changedChecks[index],
+              onChanged: (bool value) {
+                setState(() {
+                  changedChecks[index] = value;
+                });
+              }),
+        );
+        ++index;
+      }
     }
 
     return Scaffold(
@@ -90,6 +104,7 @@ class _AddState extends State<BadgeInfo> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
+
                                 Text(badge.name, style: Theme
                                     .of(context)
                                     .textTheme
@@ -100,28 +115,44 @@ class _AddState extends State<BadgeInfo> {
                         ),
                       ]
                   ),
-                  SizedBox(height: 10.0),
+                  SizedBox(height: 30.0),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(badge.description, style: Theme
+                      Text('Description', style: Theme
                           .of(context)
                           .textTheme
-                          .subtitle1,),
+                          .headline2,),
                     ],
                   ),
-
+                  SizedBox(height: 10.0),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(badge.description, style: Theme
+                            .of(context)
+                            .textTheme
+                            .subtitle1,),
+                      ]
+                  ),
+                  SizedBox(height: 30.0),
                   Column(
-                     mainAxisAlignment: MainAxisAlignment.start,
-                     crossAxisAlignment: CrossAxisAlignment.center,
-                     children: <Widget>[
-                       ListView(
-                         shrinkWrap: true,
-                          children: requirementList,
-                        )
-                      ],
-                    )
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Requirements', style: Theme
+                          .of(context)
+                          .textTheme
+                          .headline2,),
+                      SizedBox(height: 10.0),
+                      ListView(
+                        shrinkWrap: true,
+                        children: requirementList,
+                      )
+                    ],
+                  )
                 ]
             )
         ),
