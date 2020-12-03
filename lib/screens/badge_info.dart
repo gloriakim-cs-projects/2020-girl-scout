@@ -28,19 +28,17 @@ class BadgeInfo extends StatefulWidget {
 class _AddState extends State<BadgeInfo> {
 
   Badge badge;
-
+  var changedChecks = new Map<String, bool>();
 
   @override
   Widget build(BuildContext context) {
     badge = widget.badge;
     var requirementList = new List<Widget>();
-    var changedChecks = new List<bool>();
-    int index = 0;
+
 
     for (var i in badge.requirements) {
       if (i != "") {
-        changedChecks.add(false);
-        print(changedChecks.length);
+        changedChecks[i] = false;
         requirementList.add(
           new CheckboxListTile(
             controlAffinity: ListTileControlAffinity.platform,
@@ -48,14 +46,15 @@ class _AddState extends State<BadgeInfo> {
                   .of(context)
                   .textTheme
                   .subtitle1,),
-              value: changedChecks[index],
+              value: changedChecks[i],
               onChanged: (bool value) {
                 setState(() {
-                  changedChecks[index] = value;
+                  changedChecks[i] = value;
+                  print(changedChecks[i]);
+                  print(i);
                 });
               }),
         );
-        ++index;
       }
     }
 
