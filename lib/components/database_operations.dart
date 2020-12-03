@@ -274,11 +274,11 @@ class GirlScoutDatabase {
     var gradeBox = Hive.box('grades');
 
     Member member = getMember(name); //get member
-    HiveList memberbadges = member.badgeTags; // get member's grade
-    print(memberbadges);
-    if (memberbadges != null) {
+    HiveList memberBadges = member.badgeTags; // get member's grade
+    print(memberBadges);
+    if (memberBadges != null) {
       print('returning member\'s badges');
-      return memberbadges.toList();
+      return memberBadges.toList();
     }
     print('member has no badges');
     return null;
