@@ -84,14 +84,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'All', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.ALL, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'All', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.ALL, false)
+                    ///  ),
+                    ///),
                   ]
               ),
               ListView(
@@ -109,14 +109,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'Daisy', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.DAISY, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'Daisy', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.DAISY, false)
+                    ///  ),
+                    ///),
                   ]
               ),
               ListView(
@@ -134,14 +134,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'Brownie', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.BROWNIE, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'Brownie', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.BROWNIE, false)
+                    ///  ),
+                    ///),
                   ]
               ),
               ListView(
@@ -159,14 +159,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'Junior', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.JUNIOR, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'Junior', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.JUNIOR, false)
+                    ///  ),
+                    ///),
                   ]
               ),
               ListView(
@@ -184,14 +184,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'Cadette', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.CADETTE, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'Cadette', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.CADETTE, false)
+                    ///  ),
+                    ///),
                   ]
               ),
               ListView(
@@ -209,14 +209,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'Senior', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.SENIOR, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'Senior', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.SENIOR, false)
+                    ///  ),
+                    ///),
                   ]
               ),
               ListView(
@@ -234,14 +234,14 @@ class _CollectionState extends State<Collection> {
                     ),
 
                     ///THIS IS USED FOR PATCHES
-                    ReusableCard(
-                      title: 'Patches', subtitle: 'Ambassador', addIcon: true,
-                      cardChild:
-                      ListView(
-                          shrinkWrap: true,
-                          children: getBadgeWidgetList(gradeEnum.AMBASSADOR, false)
-                      ),
-                    ),
+                    ///ReusableCard(
+                    ///  title: 'Patches', subtitle: 'Ambassador', addIcon: true,
+                    ///  cardChild:
+                    ///  ListView(
+                    ///      shrinkWrap: true,
+                    ///      children: getBadgeWidgetList(gradeEnum.AMBASSADOR, false)
+                    ///  ),
+                    ///),
                   ]
               ),],
           ),
